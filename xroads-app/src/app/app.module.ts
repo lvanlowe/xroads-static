@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenusModule } from '@progress/kendo-angular-menu';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 
 
@@ -21,6 +23,7 @@ import { MenusModule } from '@progress/kendo-angular-menu';
     ButtonsModule,
     BrowserAnimationsModule,
     MenusModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
