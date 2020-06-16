@@ -8,6 +8,8 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenusModule } from '@progress/kendo-angular-menu';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { ToolBarModule } from '@progress/kendo-angular-toolbar';
+
 
 
 
@@ -24,6 +26,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
     BrowserAnimationsModule,
     MenusModule,
     LayoutModule,
+    ToolBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,18 +19,19 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "@progress/kendo-angular-buttons": "^5.4.2",
+    "@progress/kendo-angular-buttons": "^5.1.1",
     "@progress/kendo-angular-common": "^1.0.0",
     "@progress/kendo-angular-l10n": "^2.0.0",
     "@progress/kendo-angular-layout": "^5.0.1",
     "@progress/kendo-angular-menu": "^2.0.2",
     "@progress/kendo-angular-popup": "^3.0.0",
+    "@progress/kendo-angular-progressbar": "^0.2.3",
+    "@progress/kendo-angular-toolbar": "^3.1.2",
     "@progress/kendo-theme-default": "^4.19.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
-    "@progress/kendo-angular-progressbar": "^0.2.3"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
