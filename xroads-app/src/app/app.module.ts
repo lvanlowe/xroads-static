@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenusModule } from '@progress/kendo-angular-menu';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { ToolBarModule } from '@progress/kendo-angular-toolbar';
+import { DeaconReviewComponent } from './deacon/deacon-review/deacon-review.component';
+import { UsherReviewComponent } from './usher/usher-review/usher-review.component';
+import { NurseryReviewComponent } from './nursery/nursery-review/nursery-review.component';
 
 
 
@@ -17,7 +20,10 @@ import { ToolBarModule } from '@progress/kendo-angular-toolbar';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DeaconReviewComponent,
+    UsherReviewComponent,
+    NurseryReviewComponent
   ],
   imports: [
     BrowserModule,
