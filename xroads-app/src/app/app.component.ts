@@ -19,7 +19,8 @@ export class AppComponent {
     routes.forEach(route => {
       this.items.push({
           text: route.text,
-          path: route.path ? route.path : ''
+          path: route.path ? route.path : '',
+          icon: route.icon
       });
   });
 

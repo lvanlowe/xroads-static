@@ -24,8 +24,10 @@
       [width]="100"
       [mode]="'push'"
       [(expanded)]="expanded"
+      [mini]="true"
   >
       <ng-template kendoDrawerItemTemplate let-item>
+        <span class="k-icon item-icon {{ item.icon }}"></span>
           <div class="k-drawer-link" [routerLink]="item.path">
               <span>{{ item.text }}</span>
           </div>
