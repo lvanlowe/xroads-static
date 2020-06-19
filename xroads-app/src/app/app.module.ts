@@ -12,9 +12,7 @@ import { ToolBarModule } from '@progress/kendo-angular-toolbar';
 import { DeaconReviewComponent } from './deacon/deacon-review/deacon-review.component';
 import { UsherReviewComponent } from './usher/usher-review/usher-review.component';
 import { NurseryReviewComponent } from './nursery/nursery-review/nursery-review.component';
-
-
-
+import { CustomToolComponent } from './custom-tool.component';
 
 
 @NgModule({
@@ -23,7 +21,8 @@ import { NurseryReviewComponent } from './nursery/nursery-review/nursery-review.
     HomeComponent,
     DeaconReviewComponent,
     UsherReviewComponent,
-    NurseryReviewComponent
+    NurseryReviewComponent,
+    CustomToolComponent
   ],
   imports: [
     BrowserModule,
