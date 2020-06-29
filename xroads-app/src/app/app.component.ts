@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DrawerItem, DrawerSelectEvent } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
+import { UserInfo } from './models/user-info';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
   public expanded = false;
   public selected = 'Deacons';
   public items: Array<any> = [];
+  userInfo: UserInfo;
 
   constructor(private router: Router) {
     const routes: any[] = router.config;
@@ -41,4 +43,12 @@ export class AppComponent {
   // public onSelect(ev: DrawerSelectEvent): void {
   //     this.selected = ev.item.text;
   // }
+
+  goAuth(provider) {
+    // const { pathname } = window.location;
+    // const redirect = `post_login_redirect_uri=${pathname}`;
+    // const url = `/.auth/login/${provider}?${redirect}`;
+    // window.location.href = url;
+    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles:[] }
+  }
 }

@@ -13,6 +13,20 @@
   >
       <span class="mail-box">Crossroads PCA Web App</span>
   </button>
+  <div *ngIf="!userInfo">
+    <kendo-buttongroup [selection]="'single'">
+      <button kendoButton [toggleable]="true" (click)="goAuth('facebook')">
+        Facebook
+      </button>
+      <button kendoButton [toggleable]="true" (click)="goAuth('google')">
+        Google
+      </button>
+      <button kendoButton [toggleable]="true" (click)="goAuth('twitter')">
+        Twitter
+      </button>
+    </kendo-buttongroup>
+  </div>
+
 </div>
 <kendo-drawer-container>
   <kendo-drawer #drawer
