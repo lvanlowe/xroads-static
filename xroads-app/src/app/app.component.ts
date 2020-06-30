@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DrawerItem, DrawerSelectEvent } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
 import { UserInfo } from './models/user-info';
@@ -8,15 +8,29 @@ import { UserInfo } from './models/user-info';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
   title = 'Crossroads PCA Web App';
   public expanded = false;
   public selected = 'Deacons';
   public items: Array<any> = [];
   userInfo: UserInfo;
 
-  constructor(private router: Router) {
-    const routes: any[] = router.config;
+  constructor(private router: Router) {}
+  //   const routes: any[] = router.config;
+
+  //   routes.forEach(route => {
+  //     this.items.push({
+  //         text: route.text,
+  //         path: route.path ? route.path : '',
+  //         icon: route.icon
+  //     });
+  // });
+
+  //   this.items[0].selected = true;
+// }
+  ngOnInit(): void {
+    const routes: any[] = this.router.config;
 
     routes.forEach(route => {
       this.items.push({
@@ -24,9 +38,10 @@ export class AppComponent {
           path: route.path ? route.path : '',
           icon: route.icon
       });
-  });
+    });
 
     this.items[0].selected = true;
+
 }
 
 
