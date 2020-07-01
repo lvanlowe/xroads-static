@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   public expanded = false;
   public selected = 'Deacons';
   public items: Array<any> = [];
+  public canLogin = true;
+  public canLogout = false;
   userInfo: UserInfo;
 
   constructor(private router: Router) {}
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit {
 
   //   this.items[0].selected = true;
 // }
-  ngOnInit(): void {
+  async  ngOnInit() {
     const routes: any[] = this.router.config;
 
     routes.forEach(route => {
@@ -42,8 +44,24 @@ export class AppComponent implements OnInit {
 
     this.items[0].selected = true;
 
+    this.userInfo = await this.getUserInfo();
 }
 
+// async ngOnInit() {
+//   this.userInfo = await this.getUserInfo();
+// }
+
+async getUserInfo() {
+  try {
+    const response = await fetch('/.auth/me');
+    const payload = await response.json();
+    const { clientPrincipal } = payload;
+    return clientPrincipal;
+  } catch (error) {
+    console.error('No profile could be found');
+    return undefined;
+  }
+}
 
   // public items: Array<DrawerItem> = [
   //     { text: 'Deacons', icon: 'k-i-wrench', selected: true },
@@ -59,11 +77,33 @@ export class AppComponent implements OnInit {
   //     this.selected = ev.item.text;
   // }
 
-  goAuth(provider) {
+  onLogon() {
+    this.canLogin = false;
+    this.canLogout = false;
+  }
+
+  onLogOut() {
+    this.canLogin = true;
+    this.canLogout = false;
+  }
+
+  checkUser() {
+    if (this.userInfo) {
+      this.canLogin = false;
+      this.canLogout = true;
+    } else {
+      this.canLogin = true;
+      this.canLogout = false;
+    }
+  }
+
+  goAuth(provider: string) {
     // const { pathname } = window.location;
     // const redirect = `post_login_redirect_uri=${pathname}`;
     // const url = `/.auth/login/${provider}?${redirect}`;
     // window.location.href = url;
-    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles:[] }
+    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles: [] };
   }
+
+
 }
