@@ -113,11 +113,11 @@ async getUserInfo() {
   }
 
   goAuth(provider: string) {
-    // const { pathname } = window.location;
-    // const redirect = `post_login_redirect_uri=${pathname}`;
-    // const url = `/.auth/login/${provider}?${redirect}`;
-    // window.location.href = url;
-    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles: [] };
+    const { pathname } = window.location;
+    const redirect = `post_login_redirect_uri=${pathname}`;
+    const url = `/.auth/login/${provider}?${redirect}`;
+    window.location.href = url;
+    // this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles: [] };
     this.checkUser();
   }
 
