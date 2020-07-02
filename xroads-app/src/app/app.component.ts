@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   public items: Array<any> = [];
   public canLogin = true;
   public canLogout = false;
+  public logButtonText = 'Login';
+  public greeting: string;
   userInfo: UserInfo;
 
   constructor(private router: Router) {}
@@ -85,15 +87,20 @@ async getUserInfo() {
   onLogOut() {
     this.canLogin = true;
     this.canLogout = false;
+    this.logButtonText = 'Login';
+    this.greeting = '';
   }
 
   checkUser() {
     if (this.userInfo) {
       this.canLogin = false;
       this.canLogout = true;
+      this.logButtonText = 'Logout';
+      this.greeting = 'Hi ' + this.userInfo.userDetails;
     } else {
       this.canLogin = true;
       this.canLogout = false;
+      this.greeting = '';
     }
   }
 

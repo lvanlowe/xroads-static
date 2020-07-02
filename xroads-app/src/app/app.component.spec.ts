@@ -53,6 +53,20 @@ describe('AppComponent', () => {
       component.onLogOut();
       expect(component.canLogout).toBeFalsy();
     });
+
+    it('should have Button text to be Login', () => {
+
+      component.logButtonText = 'Logout';
+      component.onLogOut();
+      expect(component.logButtonText).toBe('Login');
+    });
+
+    it('should not have a greeting', () => {
+
+      component.greeting = 'Hi Van';
+      component.onLogOut();
+      expect(component.greeting).toBe('');
+    });
   });
 
   describe('Checking user', () => {
@@ -74,6 +88,18 @@ describe('AppComponent', () => {
         component.checkUser();
         expect(component.canLogout).toBeTruthy();
       });
+
+      it('should have Button text to be Logout', () => {
+
+        component.checkUser();
+        expect(component.logButtonText).toBe('Logout');
+      });
+
+      it('should have a greeting', () => {
+
+        component.checkUser();
+        expect(component.greeting).toBe('Hi Van');
+      });
     });
 
     describe('and there is no userinfo', () => {
@@ -89,7 +115,20 @@ describe('AppComponent', () => {
         component.checkUser();
         expect(component.canLogout).toBeFalsy();
       });
+
+      it('should have Button text to be Login', () => {
+         component.checkUser();
+         expect(component.logButtonText).toBe('Login');
+      });
+
+      it('should not have a greeting', () => {
+
+        component.greeting = 'Hi Van';
+        component.checkUser();
+        expect(component.greeting).toBe('');
+      });
     });
+
   });
 
 });
