@@ -80,16 +80,24 @@ async getUserInfo() {
   // }
 
   onLogon() {
-    this.canLogin = false;
-    this.canLogout = false;
+    if (this.canLogin) {
+      this.canLogin = false;
+      this.canLogout = false;
+    } else {
+      this.canLogin = true;
+      this.canLogout = false;
+      this.logButtonText = 'Login';
+      this.greeting = '';
+    }
+
   }
 
-  onLogOut() {
-    this.canLogin = true;
-    this.canLogout = false;
-    this.logButtonText = 'Login';
-    this.greeting = '';
-  }
+  // onLogOut() {
+  //   this.canLogin = true;
+  //   this.canLogout = false;
+  //   this.logButtonText = 'Login';
+  //   this.greeting = '';
+  // }
 
   checkUser() {
     if (this.userInfo) {
@@ -110,6 +118,7 @@ async getUserInfo() {
     // const url = `/.auth/login/${provider}?${redirect}`;
     // window.location.href = url;
     this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles: [] };
+    this.checkUser();
   }
 
 

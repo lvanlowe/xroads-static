@@ -22,6 +22,11 @@ describe('AppComponent', () => {
 
   describe('When Logging in', () => {
 
+    beforeEach(() => {
+      component.canLogin = true;
+      component.canLogout = false;
+    });
+
     it('should have CanLogin to be false', () => {
 
       component.onLogon();
@@ -44,27 +49,27 @@ describe('AppComponent', () => {
 
     it('should have CanLogin to be true', () => {
 
-      component.onLogOut();
+      component.onLogon();
       expect(component.canLogin).toBeTruthy();
     });
 
     it('should have CanLogout to be false', () => {
 
-      component.onLogOut();
+      component.onLogon();
       expect(component.canLogout).toBeFalsy();
     });
 
     it('should have Button text to be Login', () => {
 
       component.logButtonText = 'Logout';
-      component.onLogOut();
+      component.onLogon();
       expect(component.logButtonText).toBe('Login');
     });
 
     it('should not have a greeting', () => {
 
       component.greeting = 'Hi Van';
-      component.onLogOut();
+      component.onLogon();
       expect(component.greeting).toBe('');
     });
   });
