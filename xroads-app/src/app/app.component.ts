@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
     this.items[0].selected = true;
 
     this.userInfo = await this.getUserInfo();
+    this.checkUser();
 }
 
 // async ngOnInit() {
