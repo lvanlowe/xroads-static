@@ -13,6 +13,15 @@ import { DeaconReviewComponent } from './deacon/deacon-review/deacon-review.comp
 import { UsherReviewComponent } from './usher/usher-review/usher-review.component';
 import { NurseryReviewComponent } from './nursery/nursery-review/nursery-review.component';
 import { CustomToolComponent } from './custom-tool.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { NgrxAutoEntityModule } from '@briebug/ngrx-auto-entity';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import {appReducer, appMetaReducers} from './state/app.state'
+import { UserInfo } from './models/user-info';
+import { UserInfoService } from './services/user-info.service';
+
 
 
 @NgModule({
@@ -32,8 +41,12 @@ import { CustomToolComponent } from './custom-tool.component';
     MenusModule,
     LayoutModule,
     ToolBarModule,
+    StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([]),
+    NgrxAutoEntityModule.forRoot() // Add this!
   ],
-  providers: [],
+  providers: [{ provide: UserInfo, useClass: UserInfoService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

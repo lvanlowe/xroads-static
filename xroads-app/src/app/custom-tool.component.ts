@@ -22,7 +22,7 @@ export class CustomToolComponent extends ToolBarToolComponent {
 
   @Input() public text: string;
 
-  @ViewChild('toolbarTemplate', { }) public toolbarTemplate: TemplateRef<any>;
+  @ViewChild('toolbarTemplate', { static: true }) public toolbarTemplate: TemplateRef<any>;
 
   constructor() {
       super();

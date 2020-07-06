@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInfo } from 'src/app/models/user-info';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { isUsherRole } from 'src/app/state/user-info.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-usher-review',
@@ -8,37 +11,13 @@ import { UserInfo } from 'src/app/models/user-info';
 })
 export class UsherReviewComponent implements OnInit {
 
-  userInfo: UserInfo;
-  canUpdate: boolean;
+  isUsher$: Observable<boolean>;
 
-  constructor() { }
+  constructor( private store: Store<AppState>) {}
 
   async  ngOnInit() {
 
-    this.userInfo = await this.getUserInfo();
-    this.checkRoles();
-  }
-
-  checkRoles() {
-    if (this.userInfo.userRoles.indexOf('admin') > -1) {
-      this.canUpdate = true;
-    }
-    if (this.userInfo.userRoles.indexOf('usher') > -1) {
-      this.canUpdate = true;
-    }
-
-  }
-
-  async getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
+   this.isUsher$ = this.store.pipe(select(isUsherRole));
   }
 
 
