@@ -13,6 +13,8 @@ import { DeaconReviewComponent } from './deacon/deacon-review/deacon-review.comp
 import { UsherReviewComponent } from './usher/usher-review/usher-review.component';
 import { NurseryReviewComponent } from './nursery/nursery-review/nursery-review.component';
 import { CustomToolComponent } from './custom-tool.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { CustomToolComponent } from './custom-tool.component';
     MenusModule,
     LayoutModule,
     ToolBarModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
