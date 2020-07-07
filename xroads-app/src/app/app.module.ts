@@ -15,6 +15,11 @@ import { NurseryReviewComponent } from './nursery/nursery-review/nursery-review.
 import { CustomToolComponent } from './custom-tool.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { NgrxAutoEntityModule } from '@briebug/ngrx-auto-entity';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import {appReducer, appMetaReducers} from './state/app.state'
+
 
 
 @NgModule({
@@ -35,6 +40,9 @@ import { environment } from '../environments/environment';
     LayoutModule,
     ToolBarModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
+    EffectsModule.forRoot([]),
+    NgrxAutoEntityModule.forRoot() // Add this!
   ],
   providers: [],
   bootstrap: [AppComponent]
