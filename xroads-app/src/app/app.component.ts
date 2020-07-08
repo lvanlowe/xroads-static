@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DrawerItem, DrawerSelectEvent } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
 import { UserInfo } from './models/user-info';
-import {LoadAll} from '@briebug/ngrx-auto-entity';
+import {LoadAll,LoadAllSuccess} from '@briebug/ngrx-auto-entity';
 import { AppState } from './state/app.state';
 import { Store } from '@ngrx/store';
 
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   public logButtonText = 'Login';
   public greeting: string;
   userInfo: UserInfo;
+  userInfos: UserInfo[];
 
   constructor(private router: Router, private store: Store<AppState>) {}
   //   const routes: any[] = router.config;
@@ -49,7 +50,9 @@ export class AppComponent implements OnInit {
 
     this.items[0].selected = true;
     this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
+    this.userInfos = [{identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] }];
     this.store.dispatch(new LoadAll(UserInfo));
+    this.store.dispatch(new LoadAllSuccess(UserInfo, this.userInfos ));
     // this.userInfo = await this.getUserInfo();
     this.checkUser();
 }
