@@ -19,6 +19,8 @@ import { NgrxAutoEntityModule } from '@briebug/ngrx-auto-entity';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {appReducer, appMetaReducers} from './state/app.state'
+import { UserInfo } from './models/user-info';
+import { UserInfoService } from './services/user-info.service';
 
 
 
@@ -39,12 +41,12 @@ import {appReducer, appMetaReducers} from './state/app.state'
     MenusModule,
     LayoutModule,
     ToolBarModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     NgrxAutoEntityModule.forRoot() // Add this!
   ],
-  providers: [],
+  providers: [{ provide: UserInfo, useClass: UserInfoService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

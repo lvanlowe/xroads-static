@@ -1,19 +1,21 @@
 import { IEntityState } from '@briebug/ngrx-auto-entity';
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
+import { userInfoReducer } from './user-info.state';
+import { UserInfo } from '../models/user-info';
 
 // import { Customer, Order } from '../models';
 // import { customerReducer } from './customer.state';
 // import { orderReducer } from './order.state';
 
 export interface IAppState {
-    // customer: IEntityState<Customer>;
+    userInfo: IEntityState<UserInfo>;
     // order: IEntityState<Order>;
 }
 
 export type AppState = IAppState;
 
 export const appReducer: ActionReducerMap<AppState> = {
-    // customer: customerReducer,
+    userInfo: userInfoReducer,
     // order: orderReducer
 };
 

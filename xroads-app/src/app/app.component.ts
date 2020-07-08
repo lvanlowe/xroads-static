@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DrawerItem, DrawerSelectEvent } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
 import { UserInfo } from './models/user-info';
+import {LoadAll} from '@briebug/ngrx-auto-entity';
+import { AppState } from './state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +23,7 @@ export class AppComponent implements OnInit {
   public greeting: string;
   userInfo: UserInfo;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
   //   const routes: any[] = router.config;
 
   //   routes.forEach(route => {
@@ -45,8 +48,9 @@ export class AppComponent implements OnInit {
     });
 
     this.items[0].selected = true;
-
-    this.userInfo = await this.getUserInfo();
+    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
+    this.store.dispatch(new LoadAll(UserInfo));
+    // this.userInfo = await this.getUserInfo();
     this.checkUser();
 }
 
@@ -114,11 +118,11 @@ async getUserInfo() {
   }
 
   goAuth(provider: string) {
-    const { pathname } = window.location;
-    const redirect = `post_login_redirect_uri=${pathname}`;
-    const url = `/.auth/login/${provider}?${redirect}`;
-    window.location.href = url;
-    // this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: '', userRoles: [] };
+    // const { pathname } = window.location;
+    // const redirect = `post_login_redirect_uri=${pathname}`;
+    // const url = `/.auth/login/${provider}?${redirect}`;
+    // window.location.href = url;
+    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
     this.checkUser();
   }
 
