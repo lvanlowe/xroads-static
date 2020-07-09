@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DrawerItem, DrawerSelectEvent } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
 import { UserInfo } from './models/user-info';
-import {LoadAll,LoadAllSuccess} from '@briebug/ngrx-auto-entity';
+import {LoadAll,LoadAllSuccess, CreateSuccess, SelectByKey} from '@briebug/ngrx-auto-entity';
 import { AppState } from './state/app.state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { currentUserInfo, isAdminRole } from './state/user-info.state';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +20,10 @@ export class AppComponent implements OnInit {
   public items: Array<any> = [];
   public canLogin = true;
   public canLogout = false;
+  public isAdmin: boolean;
   public logButtonText = 'Login';
   public greeting: string;
+  testText: any;
   userInfo: UserInfo;
   userInfos: UserInfo[];
 
@@ -51,8 +54,14 @@ export class AppComponent implements OnInit {
     this.items[0].selected = true;
     this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
     this.userInfos = [{identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] }];
-    this.store.dispatch(new LoadAll(UserInfo));
-    this.store.dispatch(new LoadAllSuccess(UserInfo, this.userInfos ));
+    // this.store.dispatch(new LoadAll(UserInfo));
+    // this.store.dispatch(new LoadAllSuccess(UserInfo, this.userInfos ));
+    // this.store.dispatch(new SelectByKey(UserInfo, this.userInfos[0].userId ));
+    // this.store.pipe(select(currentUserInfo)).subscribe(data => (this.testText = data));
+    // this.store.pipe(select(isAdminRole)).subscribe(data => (this.isAdmin = data));
+    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
+    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
+
     // this.userInfo = await this.getUserInfo();
     this.checkUser();
 }
