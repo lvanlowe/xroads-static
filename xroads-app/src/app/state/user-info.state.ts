@@ -13,13 +13,32 @@ export function userInfoReducer(state = initialState): IEntityState<UserInfo> {
   return state;
 }
 
-export const isAdminRole = createSelector(
+export const isUsherRole = createSelector(
   currentUserInfo,
   (userInfo) => {
-    if (userInfo && userInfo.userRoles.find(u => u === 'usher')) {
+    if (userInfo && userInfo.userRoles.find(u => u === 'usher'  || u === 'admin' )) {
     return true;
   } else {
     return false;
   }}
+);
 
+export const isDeaconRole = createSelector(
+  currentUserInfo,
+  (userInfo) => {
+    if (userInfo && userInfo.userRoles.find(u => u === 'deacon' || u === 'admin' )) {
+    return true;
+  } else {
+    return false;
+  }}
+);
+
+export const isNurseryRole = createSelector(
+  currentUserInfo,
+  (userInfo) => {
+    if (userInfo && userInfo.userRoles.find(u => u === 'nursery' || u === 'admin' )) {
+    return true;
+  } else {
+    return false;
+  }}
 );

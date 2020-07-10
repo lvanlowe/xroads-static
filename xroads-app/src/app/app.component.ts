@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DrawerItem, DrawerSelectEvent } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
 import { UserInfo } from './models/user-info';
-import {LoadAll,LoadAllSuccess, CreateSuccess, SelectByKey} from '@briebug/ngrx-auto-entity';
+import {LoadAll,LoadAllSuccess, CreateSuccess, SelectByKey, Clear} from '@briebug/ngrx-auto-entity';
 import { AppState } from './state/app.state';
 import { Store, select } from '@ngrx/store';
-import { currentUserInfo, isAdminRole } from './state/user-info.state';
+import { currentUserInfo } from './state/user-info.state';
 
 @Component({
   selector: 'app-root',
@@ -52,18 +52,22 @@ export class AppComponent implements OnInit {
     });
 
     this.items[0].selected = true;
+
     this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
-    this.userInfos = [{identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] }];
+    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
+    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
+
+    // this.userInfo = await this.getUserInfo();
+
+    this.checkUser();
+
+    // this.userInfos = [{identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] }];
     // this.store.dispatch(new LoadAll(UserInfo));
     // this.store.dispatch(new LoadAllSuccess(UserInfo, this.userInfos ));
     // this.store.dispatch(new SelectByKey(UserInfo, this.userInfos[0].userId ));
     // this.store.pipe(select(currentUserInfo)).subscribe(data => (this.testText = data));
     // this.store.pipe(select(isAdminRole)).subscribe(data => (this.isAdmin = data));
-    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
-    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
 
-    // this.userInfo = await this.getUserInfo();
-    this.checkUser();
 }
 
 // async ngOnInit() {
@@ -75,6 +79,9 @@ async getUserInfo() {
     const response = await fetch('/.auth/me');
     const payload = await response.json();
     const { clientPrincipal } = payload;
+    this.userInfo = clientPrincipal;
+    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
+    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
     return clientPrincipal;
   } catch (error) {
     console.error('No profile could be found');
@@ -105,6 +112,7 @@ async getUserInfo() {
       this.canLogout = false;
       this.logButtonText = 'Login';
       this.greeting = '';
+      this.store.dispatch(new Clear(UserInfo));
     }
 
   }
@@ -134,7 +142,11 @@ async getUserInfo() {
     // const redirect = `post_login_redirect_uri=${pathname}`;
     // const url = `/.auth/login/${provider}?${redirect}`;
     // window.location.href = url;
+
     this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
+    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
+    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
+
     this.checkUser();
   }
 
