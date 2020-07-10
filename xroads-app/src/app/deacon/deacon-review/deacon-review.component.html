@@ -1,4 +1,4 @@
 <p>
   deacon-review works!
 </p>
-<div *ngIf="canUpdate">Can Update</div>
+<div *ngIf="isDeacon$ | async">Can Update</div>

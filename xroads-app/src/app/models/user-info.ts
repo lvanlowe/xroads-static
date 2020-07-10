@@ -1,6 +1,8 @@
-export interface UserInfo {
+import { Key } from '@briebug/ngrx-auto-entity';
+
+export class UserInfo {
   identityProvider: string;
-  userId: string;
+  @Key userId: string;
   userDetails: string;
   userRoles: string[];
 }

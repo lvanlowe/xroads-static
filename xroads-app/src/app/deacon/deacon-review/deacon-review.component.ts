@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInfo } from 'src/app/models/user-info';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { isDeaconRole } from 'src/app/state/user-info.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-deacon-review',
@@ -8,37 +11,12 @@ import { UserInfo } from 'src/app/models/user-info';
 })
 export class DeaconReviewComponent implements OnInit {
 
-  userInfo: UserInfo;
-  canUpdate: boolean;
+  isDeacon$: Observable<boolean>;
 
-  constructor() {}
+  constructor( private store: Store<AppState>) {}
 
-
-  async  ngOnInit() {
-
-    this.userInfo = await this.getUserInfo();
-    this.checkRoles();
+  ngOnInit() {
+    this.isDeacon$ = this.store.pipe(select(isDeaconRole));
   }
 
-  checkRoles() {
-    if (this.userInfo.userRoles.indexOf('admin') > -1) {
-      this.canUpdate = true;
-    }
-    if (this.userInfo.userRoles.indexOf('deacon') > -1) {
-      this.canUpdate = true;
-    }
-
-  }
-
-  async getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
-  }
 }

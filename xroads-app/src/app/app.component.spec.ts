@@ -4,12 +4,13 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   let component: AppComponent;
   let mockRouter;
-
+  let mockStore;
 
   beforeEach(() => {
     mockRouter = jasmine.createSpyObj('router', ['config']);
+    mockStore = jasmine.createSpyObj('store', ['dispatch']);
     mockRouter.config = [];
-    component = new AppComponent(mockRouter);
+    component = new AppComponent(mockRouter, mockStore);
   });
 
   it('should create the app', () => {
