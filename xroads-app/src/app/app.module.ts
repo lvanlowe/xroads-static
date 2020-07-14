@@ -21,6 +21,9 @@ import { EffectsModule } from '@ngrx/effects';
 import {appReducer, appMetaReducers} from './state/app.state'
 import { UserInfo } from './models/user-info';
 import { UserInfoService } from './services/user-info.service';
+import { Deacon } from './models/deacon';
+import { DeaconService } from './services/deacon.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -35,6 +38,7 @@ import { UserInfoService } from './services/user-info.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ButtonsModule,
     BrowserAnimationsModule,
@@ -46,7 +50,9 @@ import { UserInfoService } from './services/user-info.service';
     EffectsModule.forRoot([]),
     NgrxAutoEntityModule.forRoot() // Add this!
   ],
-  providers: [{ provide: UserInfo, useClass: UserInfoService }],
+  providers: [{ provide: UserInfo, useClass: UserInfoService },
+              { provide: Deacon, useClass: DeaconService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
