@@ -24,6 +24,9 @@ import { UserInfoService } from './services/user-info.service';
 import { Deacon } from './models/deacon';
 import { DeaconService } from './services/deacon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -42,13 +45,16 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ButtonsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    GridModule,
     MenusModule,
     LayoutModule,
     ToolBarModule,
     StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    NgrxAutoEntityModule.forRoot() // Add this!
+    NgrxAutoEntityModule.forRoot(),
+    GridModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
               { provide: Deacon, useClass: DeaconService }

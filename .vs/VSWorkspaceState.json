@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api"
+    "\\api",
+    "\\api\\deacons-get",
+    "\\api\\shared"
   ],
-  "SelectedNode": "\\api\\shared",
+  "SelectedNode": "\\api\\shared\\deacon-data.js",
   "PreviewInSolutionExplorer": false
 }
