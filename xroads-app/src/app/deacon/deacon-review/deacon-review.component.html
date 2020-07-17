@@ -2,7 +2,13 @@
   deacon-review works!
 </p>
 <div *ngIf="isDeacon$ | async">Can Update</div>
-<kendo-grid [data]="gridDataResult" [height]="410">
+<kendo-grid
+  [data]="view | async"
+  [height]="410"
+  (edit)="editHandler($event)"
+  (cancel)="cancelHandler($event)"
+  (save)="saveHandler($event)"
+  >
   <kendo-grid-column field="year" title="Year" width="80">
   </kendo-grid-column>
   <kendo-grid-column field="month" title="Month" width="80">
