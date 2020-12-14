@@ -1,4 +1,4 @@
-import { buildState, IEntityState } from '@briebug/ngrx-auto-entity';
+import { buildState, IEntityState, EntityAction, EntityActions } from '@briebug/ngrx-auto-entity';
 import { Deacon } from '../models/deacon';
 
 export const { initialState, selectors} = buildState(Deacon);

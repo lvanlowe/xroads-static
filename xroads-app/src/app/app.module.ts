@@ -26,6 +26,8 @@ import { DeaconService } from './services/deacon.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeaconCalendar } from './models/deacon-calendar';
+import { DeaconCalendarService } from './services/deacon-calendar.service';
 
 
 
@@ -57,7 +59,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     GridModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
-              { provide: Deacon, useClass: DeaconService }
+              { provide: DeaconCalendar, useClass: DeaconCalendarService }
   ],
   bootstrap: [AppComponent]
 })

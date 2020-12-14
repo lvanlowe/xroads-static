@@ -6,9 +6,10 @@ import { map } from 'rxjs/operators';
 import { IAutoEntityService, IEntityInfo } from '@briebug/ngrx-auto-entity';
 import { environment } from '../../environments/environment';
 import { Deacon } from '../models/deacon';
+import { DeaconCalendar } from '../models/deacon-calendar';
 
 @Injectable()
-export class DeaconService implements IAutoEntityService<Deacon> {
+export class DeaconCalendarService implements IAutoEntityService<DeaconCalendar> {
   constructor(private http: HttpClient) {
   }
 
@@ -18,11 +19,11 @@ export class DeaconService implements IAutoEntityService<Deacon> {
   //   );
   // }
 
-  // loadAll(entityInfo: IEntityInfo): Observable<Deacon[]> {
-  //   return this.http.get<Deacon[]>(
-  //     `http://localhost:7071/api/deacons`
-  //   );
-  // }
+  loadAll(entityInfo: IEntityInfo): Observable<DeaconCalendar[]> {
+    return this.http.get<DeaconCalendar[]>(
+      `http://localhost:7071/api/GetDeaconCalendarFunc`
+    );
+  }
 
   // create(entityInfo: IEntityInfo, entity: any): Observable<any> {
   //   return this.http.post<any>(
