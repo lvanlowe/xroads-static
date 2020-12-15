@@ -3,7 +3,8 @@
     "",
     "\\api",
     "\\api\\deacons-get",
-    "\\api\\shared"
+    "\\api\\shared",
+    "\\xroads-app"
   ],
   "SelectedNode": "\\api\\shared\\deacon-data.js",
   "PreviewInSolutionExplorer": false

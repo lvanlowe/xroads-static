@@ -18,11 +18,11 @@ export class DeaconService implements IAutoEntityService<Deacon> {
   //   );
   // }
 
-  // loadAll(entityInfo: IEntityInfo): Observable<Deacon[]> {
-  //   return this.http.get<Deacon[]>(
-  //     `http://localhost:7071/api/deacons`
-  //   );
-  // }
+  loadAll(entityInfo: IEntityInfo): Observable<Deacon[]> {
+    return this.http.get<Deacon[]>(
+      `http://localhost:7071/api/deacons`
+    );
+  }
 
   // create(entityInfo: IEntityInfo, entity: any): Observable<any> {
   //   return this.http.post<any>(

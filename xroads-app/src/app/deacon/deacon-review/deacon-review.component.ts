@@ -7,6 +7,8 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 import { allDeacons } from 'src/app/state/deacon.state';
 import { Deacon } from 'src/app/models/deacon';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DeaconCalendar } from 'src/app/models/deacon-calendar';
+import { allDeaconCalendars } from 'src/app/state/deacon-calendar.state';
 
 @Component({
   selector: 'app-deacon-review',
@@ -16,8 +18,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class DeaconReviewComponent implements OnInit {
 
   isDeacon$: Observable<boolean>;
-  view: Observable<Deacon[]>;
-  deacons: Deacon[];
+  view: Observable<DeaconCalendar[]>;
+  deacons: DeaconCalendar[];
   gridDataResult: GridDataResult;
   formGroup: FormGroup;
 
@@ -31,7 +33,7 @@ export class DeaconReviewComponent implements OnInit {
     //   this.deacons = data;
     //   this.gridDataResult = {data: this.deacons, total: this.deacons.length};
     // });
-    this.view = this.store.pipe(select(allDeacons));
+    this.view = this.store.pipe(select(allDeaconCalendars));
     // this.view = this.store.pipe(select(allDeacons));
 
   //   this.formGroup = new FormGroup({
