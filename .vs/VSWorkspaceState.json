@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api"
+    "\\api",
+    "\\api\\deacons-get",
+    "\\api\\shared",
+    "\\xroads-app"
   ],
+  "SelectedNode": "\\api\\shared\\deacon-data.js",
   "PreviewInSolutionExplorer": false
 }

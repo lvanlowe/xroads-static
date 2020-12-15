@@ -21,6 +21,14 @@ import { EffectsModule } from '@ngrx/effects';
 import {appReducer, appMetaReducers} from './state/app.state'
 import { UserInfo } from './models/user-info';
 import { UserInfoService } from './services/user-info.service';
+import { Deacon } from './models/deacon';
+import { DeaconService } from './services/deacon.service';
+import { HttpClientModule } from '@angular/common/http';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DeaconCalendar } from './models/deacon-calendar';
+import { DeaconCalendarService } from './services/deacon-calendar.service';
+
 
 
 
@@ -35,18 +43,24 @@ import { UserInfoService } from './services/user-info.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ButtonsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    GridModule,
     MenusModule,
     LayoutModule,
     ToolBarModule,
     StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    NgrxAutoEntityModule.forRoot() // Add this!
+    NgrxAutoEntityModule.forRoot(),
+    GridModule // Add this!
   ],
-  providers: [{ provide: UserInfo, useClass: UserInfoService }],
+  providers: [{ provide: UserInfo, useClass: UserInfoService },
+              { provide: DeaconCalendar, useClass: DeaconCalendarService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,27 +2,31 @@ import { IEntityState } from '@briebug/ngrx-auto-entity';
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { userInfoReducer } from './user-info.state';
 import { UserInfo } from '../models/user-info';
+import { Deacon } from '../models/deacon';
+import { deaconReducer } from './deacon.state';
+import { DeaconCalendar } from '../models/deacon-calendar';
+import { deaconCalendarReducer } from './deacon-calendar.state';
 
-// import { Customer, Order } from '../models';
-// import { customerReducer } from './customer.state';
-// import { orderReducer } from './order.state';
 
 export interface IAppState {
     userInfo: IEntityState<UserInfo>;
-    // order: IEntityState<Order>;
+    deacon: IEntityState<Deacon>;
+    deaconCalendar: IEntityState<DeaconCalendar>;
 }
 
 export type AppState = IAppState;
 
 export const appReducer: ActionReducerMap<AppState> = {
     userInfo: userInfoReducer,
-    // order: orderReducer
+    deacon: deaconReducer,
+    deaconCalendar: deaconCalendarReducer
 };
 
 export const appMetaReducers: MetaReducer<AppState>[] = [debug];
 
 // console.log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+  console.log('reducer', reducer);
   return function(state, action) {
     console.log('state', state);
     console.log('action', action);
