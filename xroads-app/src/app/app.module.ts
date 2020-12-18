@@ -28,6 +28,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeaconCalendar } from './models/deacon-calendar';
 import { DeaconCalendarService } from './services/deacon-calendar.service';
+import { AttendeeDashboardComponent } from './attendee/attendee-dashboard/attendee-dashboard.component';
+import { AttendeeDetailComponent } from './attendee/attendee-detail/attendee-detail.component';
 
 
 
@@ -39,7 +41,9 @@ import { DeaconCalendarService } from './services/deacon-calendar.service';
     DeaconReviewComponent,
     UsherReviewComponent,
     NurseryReviewComponent,
-    CustomToolComponent
+    CustomToolComponent,
+    AttendeeDashboardComponent,
+    AttendeeDetailComponent
   ],
   imports: [
     BrowserModule,
