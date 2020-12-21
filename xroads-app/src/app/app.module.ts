@@ -30,6 +30,8 @@ import { DeaconCalendar } from './models/deacon-calendar';
 import { DeaconCalendarService } from './services/deacon-calendar.service';
 import { AttendeeDashboardComponent } from './attendee/attendee-dashboard/attendee-dashboard.component';
 import { AttendeeDetailComponent } from './attendee/attendee-detail/attendee-detail.component';
+import { Attendee } from './models/attendee';
+import { AttendeeService } from './services/attendee.service';
 
 
 
@@ -63,7 +65,8 @@ import { AttendeeDetailComponent } from './attendee/attendee-detail/attendee-det
     GridModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
-              { provide: DeaconCalendar, useClass: DeaconCalendarService }
+              { provide: DeaconCalendar, useClass: DeaconCalendarService },
+              { provide: Attendee, useClass: AttendeeService }
   ],
   bootstrap: [AppComponent]
 })

@@ -6,12 +6,15 @@ import { Deacon } from '../models/deacon';
 import { deaconReducer } from './deacon.state';
 import { DeaconCalendar } from '../models/deacon-calendar';
 import { deaconCalendarReducer } from './deacon-calendar.state';
+import { Attendee } from '../models/attendee';
+import { attendeeReducer } from './attendee.state';
 
 
 export interface IAppState {
     userInfo: IEntityState<UserInfo>;
     deacon: IEntityState<Deacon>;
     deaconCalendar: IEntityState<DeaconCalendar>;
+    attendee: IEntityState<Attendee>;
 }
 
 export type AppState = IAppState;
@@ -19,7 +22,8 @@ export type AppState = IAppState;
 export const appReducer: ActionReducerMap<AppState> = {
     userInfo: userInfoReducer,
     deacon: deaconReducer,
-    deaconCalendar: deaconCalendarReducer
+    deaconCalendar: deaconCalendarReducer,
+    attendee: attendeeReducer
 };
 
 export const appMetaReducers: MetaReducer<AppState>[] = [debug];
