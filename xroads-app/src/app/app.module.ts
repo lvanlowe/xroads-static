@@ -32,6 +32,13 @@ import { AttendeeDashboardComponent } from './attendee/attendee-dashboard/attend
 import { AttendeeDetailComponent } from './attendee/attendee-detail/attendee-detail.component';
 import { Attendee } from './models/attendee';
 import { AttendeeService } from './services/attendee.service';
+import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
+import { MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSliderModule } from '@angular/material';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from '@progress/kendo-angular-label';
+
+
+
 
 
 
@@ -54,6 +61,10 @@ import { AttendeeService } from './services/attendee.service';
     ButtonsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatProgressSpinnerModule,
     GridModule,
     MenusModule,
     LayoutModule,
@@ -62,7 +73,10 @@ import { AttendeeService } from './services/attendee.service';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     NgrxAutoEntityModule.forRoot(),
-    GridModule // Add this!
+    GridModule,
+    ProgressBarModule,
+    InputsModule,
+    LabelModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
               { provide: DeaconCalendar, useClass: DeaconCalendarService },
