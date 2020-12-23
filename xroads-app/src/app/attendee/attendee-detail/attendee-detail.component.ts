@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,13 +7,18 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./attendee-detail.component.scss']
 })
 export class AttendeeDetailComponent implements OnInit {
+
+  @Output() attendeeAdded = new EventEmitter();
+
   attendeeForm: FormGroup;
   mask = '(000) 000-0000';
+  canAdd: boolean;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.buildAttendeeForm(this.formBuilder);
+    this.canAdd = true;
   }
 
   buildAttendeeForm(formBuilder: FormBuilder) {
@@ -27,4 +32,10 @@ export class AttendeeDetailComponent implements OnInit {
       }
     );
   }
+
+  clickAdd(){
+    this.attendeeAdded.emit()
+  }
+
+  clearForm(){}
 }

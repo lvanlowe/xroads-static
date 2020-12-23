@@ -34,6 +34,10 @@
           </div>
           <kendo-formhint>is a deacon</kendo-formhint>
         </kendo-formfield>
+        <div class="k-form-buttons">
+          <button class="k-button k-primary" [disabled]="!canAdd"  (click)="clickAdd()">Add</button>
+          <button class="k-button" (click)="clearForm()">Clear</button>
+      </div>
       </fieldset>
   </form>
 </div>
