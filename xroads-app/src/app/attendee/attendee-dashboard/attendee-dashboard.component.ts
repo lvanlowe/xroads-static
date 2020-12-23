@@ -41,4 +41,5 @@ export class AttendeeDashboardComponent implements OnInit {
     this.displayDetails = false;
     this.canAdd = true;
   }
+
 }

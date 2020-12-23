@@ -18,7 +18,9 @@ export class AttendeeDetailComponent implements OnInit {
 
   ngOnInit() {
     this.buildAttendeeForm(this.formBuilder);
-    this.canAdd = true;
+    this.attendeeForm.markAsPristine();
+    this.canAdd = false;
+    this.attendeeForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
   }
 
   buildAttendeeForm(formBuilder: FormBuilder) {
@@ -38,4 +40,12 @@ export class AttendeeDetailComponent implements OnInit {
   }
 
   clearForm(){}
+
+  enableAddButton() {
+    if (this.attendeeForm.valid && !this.attendeeForm.errors) {
+      this.canAdd = true;
+    } else {
+      this.canAdd = false;
+    }
+  }
 }

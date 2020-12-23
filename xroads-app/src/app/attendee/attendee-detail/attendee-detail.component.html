@@ -28,11 +28,8 @@
           <kendo-formerror>Error: Not valid email format</kendo-formerror>
         </kendo-formfield>
         <kendo-formfield>
-          <div class="k-checkbox-wrap">
-            <kendo-label [for]="isDeacon" class="k-checkbox-label" text="Is a Deacon"></kendo-label>
-            <input #isDeacon type="checkbox" kendoCheckBox formControlName="isDeacon"/>
-          </div>
-          <kendo-formhint>is a deacon</kendo-formhint>
+          <kendo-label [for]="isDeacon" text="Deacon"></kendo-label>
+          <kendo-switch formControlName="isDeacon" [onLabel]="'Yes'" [offLabel]="'No'" #isDeacon></kendo-switch>
         </kendo-formfield>
         <div class="k-form-buttons">
           <button class="k-button k-primary" [disabled]="!canAdd"  (click)="clickAdd()">Add</button>
