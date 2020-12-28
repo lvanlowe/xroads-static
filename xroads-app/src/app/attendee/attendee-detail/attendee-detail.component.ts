@@ -1,5 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Create } from '@briebug/ngrx-auto-entity';
+import { select, Store } from '@ngrx/store';
+import { Attendee } from 'src/app/models/attendee';
+import { AppState } from 'src/app/state/app.state';
+import { savingAttendee } from 'src/app/state/attendee.state';
 
 @Component({
   selector: 'app-attendee-detail',
@@ -13,13 +18,26 @@ export class AttendeeDetailComponent implements OnInit {
   attendeeForm: FormGroup;
   mask = '(000) 000-0000';
   canAdd: boolean;
+  isSaving: boolean;
+  attendeeSaved = false;
+  attendee: Attendee;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
 
   ngOnInit() {
     this.buildAttendeeForm(this.formBuilder);
     this.attendeeForm.markAsPristine();
-    this.canAdd = false;
+    this.store.pipe(select(savingAttendee))
+    .subscribe(saving => {
+        console.log('issaving');
+        this.isSaving = saving;
+        if (!this.isSaving && this.attendeeSaved) {
+          this.attendeeSaved = false;
+          this.canAdd  = false;
+          this.attendeeAdded.emit()
+          // this.showCompletion = true;
+        }
+      });
     this.attendeeForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
   }
 
@@ -36,7 +54,12 @@ export class AttendeeDetailComponent implements OnInit {
   }
 
   clickAdd(){
-    this.attendeeAdded.emit()
+    this.attendee = {...this.attendeeForm.value};
+
+    console.log(this.attendee);
+    this.attendeeForm.markAsPristine();
+    this.store.dispatch(new Create(Attendee, this.attendee));
+    this.attendeeSaved = true;
   }
 
   clearForm(){}

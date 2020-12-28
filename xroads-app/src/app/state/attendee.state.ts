@@ -4,7 +4,8 @@ import { Attendee } from '../models/attendee';
 export const { initialState, selectors} = buildState(Attendee);
 
 export const {
-  selectAll: allAttendees
+  selectAll: allAttendees,
+  selectIsSaving: savingAttendee,
 } = selectors;
 
 export function attendeeReducer(state = initialState): IEntityState<Attendee> {
