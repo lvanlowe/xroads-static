@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/state/app.state';
@@ -18,11 +18,21 @@ export class AttendeeDashboardComponent implements OnInit {
   isAdmin$: Observable<boolean>;
   attendeeDashboardForm: FormGroup;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private formBuilder: FormBuilder,private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.buildAttendeeForm(this.formBuilder);
+    this.attendeeDashboardForm.markAsPristine();
     this.isAdmin$ = this.store.pipe(select(isDeaconRole));
     this.canAdd = true;
+  }
+
+  buildAttendeeForm(formBuilder: FormBuilder) {
+    this.attendeeDashboardForm = formBuilder.group(
+      {
+
+      }
+    );
   }
 
   clickAdd(){

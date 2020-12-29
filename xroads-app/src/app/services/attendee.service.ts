@@ -15,11 +15,22 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
   //   );
   // }
 
-  // loadAll(entityInfo: IEntityInfo): Observable<DeaconCalendar[]> {
-  //   return this.http.get<DeaconCalendar[]>(
-  //     `http://localhost:7071/api/GetDeaconCalendarFunc`
-  //   );
-  // }
+  loadAll(entityInfo: IEntityInfo): Observable<Attendee[]> {
+    return this.http.get<Attendee[]>(
+
+    // ********* for testing
+    //
+    `http://localhost:7071/api/GetAttendeeFunc`
+    //
+    // **********
+    // ********* for production
+    //
+    // `/api/GetAttendeeFunc`
+    //
+    // **********
+
+    );
+  }
 
   create(entityInfo: IEntityInfo, entity: Attendee): Observable<Attendee> {
     return this.http.post<Attendee>(
@@ -30,7 +41,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     entity
     //
     // **********
-        // ********* for production
+    // ********* for production
     //
     // `/api/AddAttendeeFunc`, entity
     //

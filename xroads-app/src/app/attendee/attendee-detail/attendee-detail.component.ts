@@ -62,7 +62,9 @@ export class AttendeeDetailComponent implements OnInit {
     this.attendeeSaved = true;
   }
 
-  clearForm(){}
+  clearForm(){
+    this.attendeeForm.reset();
+  }
 
   enableAddButton() {
     if (this.attendeeForm.valid && !this.attendeeForm.errors) {

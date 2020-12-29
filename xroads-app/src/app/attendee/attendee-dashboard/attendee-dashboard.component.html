@@ -8,5 +8,8 @@
     <div *ngIf=displayDetails>
       <app-attendee-detail  (attendeeAdded) = 'hideDetails($event)'></app-attendee-detail>
     </div>
+    <div *ngIf=!displayDetails>
+      <app-attendee-list></app-attendee-list>
+    </div>
   </form>
 </div>

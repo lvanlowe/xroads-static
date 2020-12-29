@@ -36,6 +36,7 @@ import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 import { MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSliderModule } from '@angular/material';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { AttendeeListComponent } from './attendee/attendee-list/attendee-list.component';
 
 
 
@@ -52,7 +53,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
     NurseryReviewComponent,
     CustomToolComponent,
     AttendeeDashboardComponent,
-    AttendeeDetailComponent
+    AttendeeDetailComponent,
+    AttendeeListComponent
   ],
   imports: [
     BrowserModule,
