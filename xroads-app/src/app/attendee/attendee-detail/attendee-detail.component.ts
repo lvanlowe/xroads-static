@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Create } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
@@ -14,6 +14,8 @@ import { savingAttendee } from 'src/app/state/attendee.state';
 export class AttendeeDetailComponent implements OnInit {
 
   @Output() attendeeAdded = new EventEmitter();
+
+  @Input() id: string;
 
   attendeeForm: FormGroup;
   mask = '(000) 000-0000';

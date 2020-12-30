@@ -17,6 +17,7 @@ export class AttendeeDashboardComponent implements OnInit {
   displayDetails: boolean;
   isAdmin$: Observable<boolean>;
   attendeeDashboardForm: FormGroup;
+  attendeeid: string;
 
   constructor(private formBuilder: FormBuilder,private store: Store<AppState>) { }
 
@@ -50,6 +51,13 @@ export class AttendeeDashboardComponent implements OnInit {
     this.canCancel = false;
     this.displayDetails = false;
     this.canAdd = true;
+  }
+
+  showDetails(id){
+    this.canCancel = true;
+    this.displayDetails = true;
+    this.canAdd = false;
+    this.attendeeid = id;
   }
 
 }

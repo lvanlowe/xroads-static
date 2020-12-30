@@ -2,7 +2,7 @@
 <div class="example-wrap">
   <form class="k-form" [formGroup]="attendeeForm">
       <fieldset class="k-form-fieldset">
-        <legend class="k-form-legend">Enter Information</legend>
+        <legend class="k-form-legend">Enter Information {{id}}</legend>
         <kendo-formfield>
           <kendo-label [for]="firstName" text="First Name"></kendo-label>
           <input formControlName="firstName" kendoTextBox #firstName/>

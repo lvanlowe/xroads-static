@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoadAll } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -14,6 +14,7 @@ import { isDeaconRole } from 'src/app/state/user-info.state';
 })
 export class AttendeeListComponent implements OnInit {
 
+  @Output() attendeeEdited = new EventEmitter();
   isDeacon$: Observable<boolean>;
   view: Observable<Attendee[]>;
   isLoadingAttendee: boolean;
@@ -36,5 +37,7 @@ export class AttendeeListComponent implements OnInit {
 
   }
 
-  editHandler(){}
+  editHandler({sender, rowIndex, dataItem}){
+    this.attendeeEdited.emit(dataItem.id)
+  }
 }
