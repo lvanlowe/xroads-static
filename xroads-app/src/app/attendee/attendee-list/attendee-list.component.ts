@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { LoadAll } from '@briebug/ngrx-auto-entity';
+import { LoadAll, SelectByKey } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
@@ -38,6 +38,7 @@ export class AttendeeListComponent implements OnInit {
   }
 
   editHandler({sender, rowIndex, dataItem}){
-    this.attendeeEdited.emit(dataItem.id)
+    this.store.dispatch(new SelectByKey(Attendee, dataItem.id ));
+    this.attendeeEdited.emit(dataItem.id);
   }
 }

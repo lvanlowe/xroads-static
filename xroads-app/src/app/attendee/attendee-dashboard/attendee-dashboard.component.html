@@ -6,7 +6,7 @@
       <button class="k-button" [disabled]="!canCancel"  (click)="clickCancel()">Cancel</button>
     </div>
     <div *ngIf=displayDetails>
-      <app-attendee-detail id='attendeeid' (attendeeAdded) = 'hideDetails($event)'></app-attendee-detail>
+      <app-attendee-detail id={{attendeeid}} (attendeeAdded) = 'hideDetails($event)'></app-attendee-detail>
     </div>
     <div *ngIf=!displayDetails>
       <app-attendee-list (attendeeEdited) = 'showDetails($event)'></app-attendee-list>

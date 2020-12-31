@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Create } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
 import { AppState } from 'src/app/state/app.state';
-import { savingAttendee } from 'src/app/state/attendee.state';
+import { currentAttendee, savingAttendee } from 'src/app/state/attendee.state';
 
 @Component({
   selector: 'app-attendee-detail',
@@ -23,12 +24,19 @@ export class AttendeeDetailComponent implements OnInit {
   isSaving: boolean;
   attendeeSaved = false;
   attendee: Attendee;
+  attendee$: Observable<Attendee>;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
 
   ngOnInit() {
     this.buildAttendeeForm(this.formBuilder);
     this.attendeeForm.markAsPristine();
+    if (this.id !== null){
+      console.log('viewing attendee');
+      this.attendee$ = this.store.pipe(select(currentAttendee));
+      this.attendee$.subscribe(results => {this.attendee = results })
+      this.attendeeForm.patchValue(this.attendee);
+    }
     this.store.pipe(select(savingAttendee))
     .subscribe(saving => {
         console.log('issaving');
@@ -40,6 +48,7 @@ export class AttendeeDetailComponent implements OnInit {
           // this.showCompletion = true;
         }
       });
+
     this.attendeeForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
   }
 

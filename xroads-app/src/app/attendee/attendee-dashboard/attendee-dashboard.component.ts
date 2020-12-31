@@ -40,6 +40,7 @@ export class AttendeeDashboardComponent implements OnInit {
     this.canCancel = true;
     this.displayDetails = true;
     this.canAdd = false;
+    this.attendeeid = null;
   }
 
   clickCancel(){
@@ -51,6 +52,7 @@ export class AttendeeDashboardComponent implements OnInit {
     this.canCancel = false;
     this.displayDetails = false;
     this.canAdd = true;
+    this.attendeeid = null;
   }
 
   showDetails(id){
