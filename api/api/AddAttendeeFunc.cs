@@ -34,7 +34,10 @@ namespace api
             var attendee = JsonSerializer.Deserialize<AttendeeDB>(requestBody, options);
             try
             {
-                attendee.id = Guid.NewGuid().ToString();
+                if (attendee.id == null)
+                {
+                    attendee.id = Guid.NewGuid().ToString();
+                }
                 await attendeeDocuments.AddAsync(attendee);
             }
             catch (Exception e)
