@@ -50,12 +50,12 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     );
   }
 
-  // update(entityInfo: IEntityInfo, entity: any): Observable<any> {
-  //   return this.http.patch<any>(
-  //     `${environment.rootUrl}/${entityInfo.modelName}/${entity.id}`,
-  //      entity
-  //   );
-  // }
+  update(entityInfo: IEntityInfo, entity: Attendee): Observable<Attendee> {
+    return this.http.post<Attendee>(
+      `http://localhost:7071/api/AddAttendeeFunc`,
+      entity
+    );
+  }
 
   // delete(entityInfo: IEntityInfo, entity: any): Observable<any> {
   //   return this.http.delete<any>(

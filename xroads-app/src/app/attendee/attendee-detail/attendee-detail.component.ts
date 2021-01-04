@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Create } from '@briebug/ngrx-auto-entity';
+import { Create, Update } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
@@ -31,7 +31,7 @@ export class AttendeeDetailComponent implements OnInit {
   ngOnInit() {
     this.buildAttendeeForm(this.formBuilder);
     this.attendeeForm.markAsPristine();
-    if (this.id !== null){
+    if (this.id.length > 0){
       console.log('viewing attendee');
       this.attendee$ = this.store.pipe(select(currentAttendee));
       this.attendee$.subscribe(results => {this.attendee = results })
@@ -65,11 +65,17 @@ export class AttendeeDetailComponent implements OnInit {
   }
 
   clickAdd(){
-    this.attendee = {...this.attendeeForm.value};
+    this.attendee = {...this.attendee, ...this.attendeeForm.value};
 
     console.log(this.attendee);
     this.attendeeForm.markAsPristine();
-    this.store.dispatch(new Create(Attendee, this.attendee));
+    if (this.attendee.id === null)
+    {
+      this.store.dispatch(new Create(Attendee, this.attendee));
+    }
+    else {
+      this.store.dispatch(new Update(Attendee, this.attendee));
+    }
     this.attendeeSaved = true;
   }
 
