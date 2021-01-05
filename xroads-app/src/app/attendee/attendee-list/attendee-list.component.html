@@ -1,5 +1,6 @@
 <p>attendee-list works!</p>
 <div *ngIf="isDeacon$ | async">Can Update</div>
+<mat-progress-spinner mode="indeterminate" *ngIf="isLoadingAttendee"></mat-progress-spinner>
 <kendo-grid
   [data]="view | async"
   [height]="410"

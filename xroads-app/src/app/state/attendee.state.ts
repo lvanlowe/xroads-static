@@ -9,6 +9,7 @@ export const {
   selectLoadedAt: loadedAttendee,
   selectIsLoading: loadingAttendee,
   selectCurrentEntity: currentAttendee,
+  selectSavedAt: savedAttendee,
 
 } = selectors;
 

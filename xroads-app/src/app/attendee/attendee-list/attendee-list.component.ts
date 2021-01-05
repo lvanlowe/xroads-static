@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
 import { AppState } from 'src/app/state/app.state';
-import { allAttendees, loadedAttendee, loadingAttendee } from 'src/app/state/attendee.state';
+import { allAttendees, loadedAttendee, loadingAttendee, savedAttendee } from 'src/app/state/attendee.state';
 import { isDeaconRole } from 'src/app/state/user-info.state';
 
 @Component({
@@ -27,10 +27,18 @@ export class AttendeeListComponent implements OnInit {
         this.store.dispatch(new LoadAll(Attendee));
       }
     });
+
     this.store.pipe(select(loadingAttendee))
       .subscribe(loading => {
         this.isLoadingAttendee = loading;
         this.view = this.store.pipe(select(allAttendees));
+      });
+
+      this.store.pipe(select(savedAttendee))
+      .subscribe(() => {
+        console.log('changing Attendee')
+        this.view = this.store.pipe(select(allAttendees));
+
       });
 
     this.isDeacon$ = this.store.pipe(select(isDeaconRole));
@@ -40,5 +48,9 @@ export class AttendeeListComponent implements OnInit {
   editHandler({sender, rowIndex, dataItem}){
     this.store.dispatch(new SelectByKey(Attendee, dataItem.id ));
     this.attendeeEdited.emit(dataItem.id);
+  }
+
+  reload(){
+    this.view = this.store.pipe(select(allAttendees));
   }
 }
