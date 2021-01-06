@@ -20,7 +20,7 @@ export class AttendeeDetailComponent implements OnInit {
 
   attendeeForm: FormGroup;
   mask = '(000) 000-0000';
-  canAdd: boolean;
+  canSave: boolean;
   isSaving: boolean;
   attendeeSaved = false;
   attendee: Attendee;
@@ -31,25 +31,28 @@ export class AttendeeDetailComponent implements OnInit {
   ngOnInit() {
     this.buildAttendeeForm(this.formBuilder);
     this.attendeeForm.markAsPristine();
-    if (this.id.length > 0){
-      console.log('viewing attendee');
-      this.attendee$ = this.store.pipe(select(currentAttendee));
-      this.attendee$.subscribe(results => {this.attendee = results })
-      this.attendeeForm.patchValue(this.attendee);
-    }
+    this.FillInForm();
     this.store.pipe(select(savingAttendee))
     .subscribe(saving => {
         console.log('issaving');
         this.isSaving = saving;
         if (!this.isSaving && this.attendeeSaved) {
           this.attendeeSaved = false;
-          this.canAdd  = false;
+          this.canSave  = false;
           this.attendeeAdded.emit()
-          // this.showCompletion = true;
         }
       });
 
     this.attendeeForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
+  }
+
+  private FillInForm() {
+    if (this.id.length > 0) {
+      console.log('viewing attendee');
+      this.attendee$ = this.store.pipe(select(currentAttendee));
+      this.attendee$.subscribe(results => { this.attendee = results; });
+      this.attendeeForm.patchValue(this.attendee);
+    }
   }
 
   buildAttendeeForm(formBuilder: FormBuilder) {
@@ -64,30 +67,32 @@ export class AttendeeDetailComponent implements OnInit {
     );
   }
 
-  clickAdd(){
+  clickSave(){
     this.attendee = {...this.attendee, ...this.attendeeForm.value};
 
     console.log(this.attendee);
     this.attendeeForm.markAsPristine();
-    if (this.attendee.id === null)
+    if (this.attendee.id)
     {
-      this.store.dispatch(new Create(Attendee, this.attendee));
+      this.store.dispatch(new Update(Attendee, this.attendee));
     }
     else {
-      this.store.dispatch(new Update(Attendee, this.attendee));
+      this.store.dispatch(new Create(Attendee, this.attendee));
     }
     this.attendeeSaved = true;
   }
 
   clearForm(){
     this.attendeeForm.reset();
+    this.FillInForm();
+    this.attendeeForm.markAsPristine();
   }
 
   enableAddButton() {
     if (this.attendeeForm.valid && !this.attendeeForm.errors) {
-      this.canAdd = true;
+      this.canSave = true;
     } else {
-      this.canAdd = false;
+      this.canSave = false;
     }
   }
 }

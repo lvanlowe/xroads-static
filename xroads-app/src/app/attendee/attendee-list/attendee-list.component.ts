@@ -34,13 +34,6 @@ export class AttendeeListComponent implements OnInit {
         this.view = this.store.pipe(select(allAttendees));
       });
 
-      this.store.pipe(select(savedAttendee))
-      .subscribe(() => {
-        console.log('changing Attendee')
-        this.view = this.store.pipe(select(allAttendees));
-
-      });
-
     this.isDeacon$ = this.store.pipe(select(isDeaconRole));
 
   }
@@ -50,7 +43,7 @@ export class AttendeeListComponent implements OnInit {
     this.attendeeEdited.emit(dataItem.id);
   }
 
-  reload(){
-    this.view = this.store.pipe(select(allAttendees));
-  }
+  // reload(){
+  //   this.view = this.store.pipe(select(allAttendees));
+  // }
 }

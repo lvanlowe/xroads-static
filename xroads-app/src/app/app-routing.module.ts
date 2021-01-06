@@ -12,7 +12,7 @@ export const routes = [
   { path: 'deacon', component: DeaconReviewComponent, text: 'Deacon', icon: 'k-i-wrench' },
   { path: 'nursery', component: NurseryReviewComponent, text: 'Nursery', icon: 'k-i-preview' },
   { path: 'usher', component: UsherReviewComponent, text: 'Usher', icon: 'k-i-gears' },
-  { path: 'attendee', component: AttendeeDashboardComponent, text: 'Attendee', icon: 'k-i-gears' },
+  { path: 'attendee', component: AttendeeDashboardComponent, text: 'Attendee', icon: 'k-i-myspace' },
   // {
   //   path: 'products',
   //   loadChildren: () =>

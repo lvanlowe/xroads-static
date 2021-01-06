@@ -1,5 +1,3 @@
-<p>attendee-list works!</p>
-<div *ngIf="isDeacon$ | async">Can Update</div>
 <mat-progress-spinner mode="indeterminate" *ngIf="isLoadingAttendee"></mat-progress-spinner>
 <kendo-grid
   [data]="view | async"
@@ -14,6 +12,5 @@
     <ng-template kendoGridCellTemplate let-isNew="isNew">
         <button kendoGridEditCommand [primary]="true">Edit</button>
     </ng-template>
-</kendo-grid-command-column>
-
+  </kendo-grid-command-column>
 </kendo-grid>
