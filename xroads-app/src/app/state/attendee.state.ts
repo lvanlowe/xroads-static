@@ -1,4 +1,5 @@
 import { buildState, IEntityState, EntityAction, EntityActions } from '@briebug/ngrx-auto-entity';
+import { createSelector } from '@ngrx/store';
 import { Attendee } from '../models/attendee';
 
 export const { initialState, selectors} = buildState(Attendee);
@@ -16,3 +17,5 @@ export const {
 export function attendeeReducer(state = initialState): IEntityState<Attendee> {
   return state;
 }
+
+export const deaconAttendees = createSelector(allAttendees, a => a.filter(a => a.isDeacon))
