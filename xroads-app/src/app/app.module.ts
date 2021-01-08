@@ -37,6 +37,8 @@ import { MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSlid
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { AttendeeListComponent } from './attendee/attendee-list/attendee-list.component';
+import { DeaconDetailComponent } from './deacon/deacon-detail/deacon-detail.component';
+import { DeaconDashboardComponent } from './deacon/deacon-dashboard/deacon-dashboard.component';
 
 
 
@@ -54,7 +56,9 @@ import { AttendeeListComponent } from './attendee/attendee-list/attendee-list.co
     CustomToolComponent,
     AttendeeDashboardComponent,
     AttendeeDetailComponent,
-    AttendeeListComponent
+    AttendeeListComponent,
+    DeaconDetailComponent,
+    DeaconDashboardComponent
   ],
   imports: [
     BrowserModule,
