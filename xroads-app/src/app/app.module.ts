@@ -39,6 +39,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { AttendeeListComponent } from './attendee/attendee-list/attendee-list.component';
 import { DeaconDetailComponent } from './deacon/deacon-detail/deacon-detail.component';
 import { DeaconDashboardComponent } from './deacon/deacon-dashboard/deacon-dashboard.component';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
 
 
 
@@ -82,7 +84,8 @@ import { DeaconDashboardComponent } from './deacon/deacon-dashboard/deacon-dashb
     GridModule,
     ProgressBarModule,
     InputsModule,
-    LabelModule // Add this!
+    LabelModule,
+    DropDownsModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
               { provide: DeaconCalendar, useClass: DeaconCalendarService },
