@@ -13,5 +13,8 @@ namespace api.Models
         public string email { get; set; }
         public bool isDeacon { get; set; }
 
+        public string name   // property
+            =>
+                firstName + " " + lastName;
     }
 }
