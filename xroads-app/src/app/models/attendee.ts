@@ -7,4 +7,5 @@ export class Attendee {
   email: string;
   cell: string;
   isDeacon: boolean;
+  name: string;
 }
