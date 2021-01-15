@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadAll } from '@briebug/ngrx-auto-entity';
+import { Create, LoadAll } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
+import { Diaconate } from 'src/app/models/diaconate';
 import { AppState } from 'src/app/state/app.state';
 import { deaconAttendees, loadedAttendee, loadingAttendee } from 'src/app/state/attendee.state';
 
@@ -19,6 +20,8 @@ export class DeaconDetailComponent implements OnInit {
   deaconList$: Observable<Attendee[]>;
   selectedDeacon: Attendee;
   isLoadingAttendee: boolean;
+  canAdd: boolean
+  diaconate: Diaconate
   deaconForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
@@ -27,7 +30,7 @@ export class DeaconDetailComponent implements OnInit {
 
     this.buildDeaconForm(this.formBuilder);
     this.deaconForm.markAsPristine();
-
+    this.diaconate = new Diaconate;
     this.store.pipe(select(loadedAttendee)).subscribe(loaded => {
       if (!loaded) {
         this.store.dispatch(new LoadAll(Attendee));
@@ -45,7 +48,8 @@ export class DeaconDetailComponent implements OnInit {
       }
     });
 
-
+    this.canAdd = false
+    this.deaconForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
   }
 
   buildDeaconForm(formBuilder: FormBuilder) {
@@ -59,6 +63,27 @@ export class DeaconDetailComponent implements OnInit {
   }
 
   public selectionDeacon(value: Attendee): void {
+    this.deaconForm.controls.deacon.setValue(value);
+    this.diaconate.attendeeId = value.id;
+    this.diaconate.name = value.name;
+  }
 
+  clickAdd() {
+    this.diaconate = {...this.diaconate, ...this.deaconForm.value};
+    this.deaconForm.markAsPristine();
+    this.store.dispatch(new Create(Diaconate, this.diaconate));
+
+  }
+
+  clearForm(): void{
+
+  }
+
+  enableAddButton(): void {
+    if (this.deaconForm.valid && !this.deaconForm.errors) {
+      this.canAdd = true;
+    } else {
+      this.canAdd = false;
+    }
   }
 }

@@ -40,6 +40,8 @@ import { AttendeeListComponent } from './attendee/attendee-list/attendee-list.co
 import { DeaconDetailComponent } from './deacon/deacon-detail/deacon-detail.component';
 import { DeaconDashboardComponent } from './deacon/deacon-dashboard/deacon-dashboard.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { Diaconate } from './models/diaconate';
+import { DiaconateService } from './services/diaconate.service';
 
 
 
@@ -89,7 +91,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
               { provide: DeaconCalendar, useClass: DeaconCalendarService },
-              { provide: Attendee, useClass: AttendeeService }
+              { provide: Attendee, useClass: AttendeeService },
+              { provide: Diaconate, useClass: DiaconateService },
   ],
   bootstrap: [AppComponent]
 })
