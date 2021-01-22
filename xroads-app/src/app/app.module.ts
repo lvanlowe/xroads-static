@@ -42,6 +42,7 @@ import { DeaconDashboardComponent } from './deacon/deacon-dashboard/deacon-dashb
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { Diaconate } from './models/diaconate';
 import { DiaconateService } from './services/diaconate.service';
+import { DeaconListComponent } from './deacon/deacon-list/deacon-list.component';
 
 
 
@@ -62,7 +63,8 @@ import { DiaconateService } from './services/diaconate.service';
     AttendeeDetailComponent,
     AttendeeListComponent,
     DeaconDetailComponent,
-    DeaconDashboardComponent
+    DeaconDashboardComponent,
+    DeaconListComponent
   ],
   imports: [
     BrowserModule,
