@@ -1,10 +1,10 @@
 import { buildState, IEntityState } from "@briebug/ngrx-auto-entity";
-import { Diaconate } from "../models/diaconate";
+import {Diaconate} from '../models/diaconate';
 
 export const { initialState, selectors} = buildState(Diaconate);
 
 export const {
-  selectAll: allDiaconate,
+  selectAll: allDiaconates,
   selectIsSaving: savingDiaconate,
   selectLoadedAt: loadedDiaconate,
   selectIsLoading: loadingDiaconate,

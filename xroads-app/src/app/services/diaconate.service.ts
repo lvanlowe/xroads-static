@@ -15,22 +15,22 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
   //   );
   // }
 
-  // loadAll(entityInfo: IEntityInfo): Observable<Attendee[]> {
-  //   return this.http.get<Attendee[]>(
+  loadAll(entityInfo: IEntityInfo): Observable<Diaconate[]> {
+    return this.http.get<Diaconate[]>(
 
-  //   // ********* for testing
-  //   //
-  //   `http://localhost:7071/api/GetAttendeeFunc`
-  //   //
-  //   // **********
-  //   // ********* for production
-  //   //
-  //   // `/api/GetAttendeeFunc`
-  //   //
-  //   // **********
+    // ********* for testing
+    //
+    `http://localhost:7071/api/GetDiaconateFunc`
+    //
+    // **********
+    // ********* for production
+    //
+    // `/api/GetDiaconateFunc`
+    //
+    // **********
 
-  //   );
-  // }
+    );
+  }
 
   create(entityInfo: IEntityInfo, entity: Diaconate): Observable<Diaconate> {
     return this.http.post<Diaconate>(
