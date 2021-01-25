@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Diaconate } from 'src/app/models/diaconate';
 import { AppState } from 'src/app/state/app.state';
 import { allDiaconates, loadedDiaconate, loadingDiaconate } from 'src/app/state/diaconate.state';
+import { isDeaconRole } from 'src/app/state/user-info.state';
 
 @Component({
   selector: 'app-deacon-list',
@@ -13,7 +14,7 @@ import { allDiaconates, loadedDiaconate, loadingDiaconate } from 'src/app/state/
 })
 export class DeaconListComponent implements OnInit {
 
-  // isDeacon$: Observable<boolean>;
+  isDeacon$: Observable<boolean>;
   view: Observable<Diaconate[]>;
   isLoadingDiaconate: boolean;
 
@@ -31,6 +32,11 @@ export class DeaconListComponent implements OnInit {
       this.isLoadingDiaconate = loading;
       this.view = this.store.pipe(select(allDiaconates));
     });
+
+    this.isDeacon$ = this.store.pipe(select(isDeaconRole));
   }
 
+  editHandler(){
+
+  }
 }

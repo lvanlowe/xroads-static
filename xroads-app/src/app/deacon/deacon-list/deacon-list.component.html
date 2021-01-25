@@ -1,1 +1,21 @@
-<p>deacon-list works!</p>
+<div class="example-wrap">
+  <mat-progress-spinner mode="indeterminate" *ngIf="isLoadingDiaconate"></mat-progress-spinner>
+  <kendo-grid
+    [data]="view | async"
+    [height]="410"
+    (edit)="editHandler($event)"
+    >
+    <kendo-grid-column field="year" title="Year" width="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="month" title="Month" width="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="name" title="Name" width="100">
+    </kendo-grid-column>
+    <kendo-grid-command-column title="command" width="80" *ngIf="isDeacon$ | async">
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+          <button kendoGridEditCommand [primary]="true">Edit</button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</div>
+
