@@ -1,6 +1,16 @@
 <div class="example-wrap">
-  <!-- <app-deacon-detail></app-deacon-detail> -->
-  <app-deacon-list></app-deacon-list>
+  <form class="k-form" [formGroup]="deaconDashboardForm">
+    <div class="k-form-buttons" *ngIf="isDeacon$ | async">
+      <button class="k-button k-primary" [disabled]="!canAdd"  (click)="clickAdd()">Add</button>
+      <button class="k-button" [disabled]="!canCancel"  (click)="clickCancel()">Cancel</button>
+    </div>
+    <div *ngIf=displayDetails>
+       <app-deacon-detail></app-deacon-detail>
+    </div>
+    <div *ngIf=!displayDetails>
+      <app-deacon-list (editDiaconateItem) = 'showDetails($event)'></app-deacon-list>
+    </div>
+  </form>
 </div>
 
 

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadAll } from '@briebug/ngrx-auto-entity';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { LoadAll, SelectByKey } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Diaconate } from 'src/app/models/diaconate';
@@ -14,6 +14,7 @@ import { isDeaconRole } from 'src/app/state/user-info.state';
 })
 export class DeaconListComponent implements OnInit {
 
+  @Output() editDiaconateItem = new EventEmitter();
   isDeacon$: Observable<boolean>;
   view: Observable<Diaconate[]>;
   isLoadingDiaconate: boolean;
@@ -36,7 +37,8 @@ export class DeaconListComponent implements OnInit {
     this.isDeacon$ = this.store.pipe(select(isDeaconRole));
   }
 
-  editHandler(){
-
+  editHandler({sender, rowIndex, dataItem}){
+    this.store.dispatch(new SelectByKey(Diaconate, dataItem.id ));
+    this.editDiaconateItem.emit(dataItem.id);
   }
 }
