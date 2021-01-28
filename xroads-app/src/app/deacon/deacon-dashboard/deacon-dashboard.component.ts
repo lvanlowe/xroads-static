@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoadAll } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Attendee } from 'src/app/models/attendee';
 import { AppState } from 'src/app/state/app.state';
+import { loadedAttendee } from 'src/app/state/attendee.state';
 import { isDeaconRole } from 'src/app/state/user-info.state';
 
 @Component({
@@ -25,6 +28,12 @@ export class DeaconDashboardComponent implements OnInit {
   ngOnInit() {
     this.isDeacon$ = this.store.pipe(select(isDeaconRole));
     this.canAdd = true;
+
+    this.store.pipe(select(loadedAttendee)).subscribe(loaded => {
+      if (!loaded) {
+        this.store.dispatch(new LoadAll(Attendee));
+      }
+    });
   }
 
   clickAdd() {

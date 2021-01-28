@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Create, LoadAll } from '@briebug/ngrx-auto-entity';
+import { Create, LoadAll, SelectByKey } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
 import { Diaconate } from 'src/app/models/diaconate';
 import { AppState } from 'src/app/state/app.state';
-import { deaconAttendees, loadedAttendee, loadingAttendee } from 'src/app/state/attendee.state';
+import { currentAttendee, deaconAttendees, loadedAttendee, loadingAttendee } from 'src/app/state/attendee.state';
+import { currentDiaconate } from 'src/app/state/diaconate.state';
 
 @Component({
   selector: 'app-deacon-detail',
@@ -15,6 +16,8 @@ import { deaconAttendees, loadedAttendee, loadingAttendee } from 'src/app/state/
 })
 export class DeaconDetailComponent implements OnInit {
 
+  @Input() id: string;
+
   public listMonths: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   public listYears: Array<number> = [2021, 2022];
   deaconList$: Observable<Attendee[]>;
@@ -22,7 +25,10 @@ export class DeaconDetailComponent implements OnInit {
   isLoadingAttendee: boolean;
   canAdd: boolean
   diaconate: Diaconate
+  attendee: Attendee;
   deaconForm: FormGroup;
+  diaconate$: Observable<Diaconate>;
+  attendee$: Observable<Attendee>;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
 
@@ -31,6 +37,7 @@ export class DeaconDetailComponent implements OnInit {
     this.buildDeaconForm(this.formBuilder);
     this.deaconForm.markAsPristine();
     this.diaconate = new Diaconate;
+
     this.store.pipe(select(loadedAttendee)).subscribe(loaded => {
       if (!loaded) {
         this.store.dispatch(new LoadAll(Attendee));
@@ -48,8 +55,21 @@ export class DeaconDetailComponent implements OnInit {
       }
     });
 
+    this.FillInForm();
     this.canAdd = false
     this.deaconForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
+  }
+
+  private FillInForm() {
+    if (this.id.length > 0) {
+      this.diaconate$ = this.store.pipe(select(currentDiaconate));
+      this.diaconate$.subscribe(results => { this.diaconate = results; });
+      this.deaconForm.patchValue(this.diaconate);
+      this.store.dispatch(new SelectByKey(Attendee, this.diaconate.attendeeId));
+      this.attendee$ = this.store.pipe(select(currentAttendee));
+      this.attendee$.subscribe(results => { this.attendee = results; });
+      this.deaconForm.controls.deacon.setValue(this.attendee);
+    }
   }
 
   buildDeaconForm(formBuilder: FormBuilder) {

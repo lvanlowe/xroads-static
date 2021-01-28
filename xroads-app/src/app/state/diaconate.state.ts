@@ -8,7 +8,8 @@ export const {
   selectIsSaving: savingDiaconate,
   selectLoadedAt: loadedDiaconate,
   selectIsLoading: loadingDiaconate,
-
+  selectCurrentEntity: currentDiaconate,
+  selectSavedAt: savedDiaconate,
 } = selectors;
 
 export function diaconateReducer(state = initialState): IEntityState<Diaconate> {
