@@ -26,6 +26,8 @@ export class DeaconDashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.buildDeaconForm(this.formBuilder);
+    this.deaconDashboardForm.markAsPristine();
     this.isDeacon$ = this.store.pipe(select(isDeaconRole));
     this.canAdd = true;
 
@@ -34,6 +36,14 @@ export class DeaconDashboardComponent implements OnInit {
         this.store.dispatch(new LoadAll(Attendee));
       }
     });
+  }
+
+  buildDeaconForm(formBuilder: FormBuilder) {
+    this.deaconDashboardForm = formBuilder.group(
+      {
+
+      }
+    );
   }
 
   clickAdd() {

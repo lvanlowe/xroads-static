@@ -5,7 +5,7 @@
       <button class="k-button" [disabled]="!canCancel"  (click)="clickCancel()">Cancel</button>
     </div>
     <div *ngIf=displayDetails>
-       <app-deacon-detail id={{diaconateid}} ></app-deacon-detail>
+      <app-deacon-detail id={{diaconateid}} ></app-deacon-detail>
     </div>
     <div *ngIf=!displayDetails>
       <app-deacon-list (editDiaconateItem) = 'showDetails($event)'></app-deacon-list>
