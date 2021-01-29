@@ -4,19 +4,17 @@ import { DeaconDetailComponent } from './deacon-detail.component';
 
 describe('DeaconDetailComponent', () => {
   let component: DeaconDetailComponent;
-  let fixture: ComponentFixture<DeaconDetailComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DeaconDetailComponent ]
-    })
-    .compileComponents();
-  }));
+  let mockFormBuilder;
+  let mockStore;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeaconDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockFormBuilder = jasmine.createSpyObj('formBuilder', ['group']);
+    mockStore = jasmine.createSpyObj('store', ['dispatch']);
+
+    component = new DeaconDetailComponent(
+      mockFormBuilder,
+      mockStore
+    )
   });
 
   it('should create', () => {

@@ -19,7 +19,7 @@ export class DeaconDetailComponent implements OnInit {
   @Input() id: string;
 
   public listMonths: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  public listYears: Array<number> = [2021, 2022];
+  public listYears: Array<number> = [];
   deaconList$: Observable<Attendee[]>;
   selectedDeacon: Attendee;
   isLoadingAttendee: boolean;
@@ -54,7 +54,7 @@ export class DeaconDetailComponent implements OnInit {
         this.deaconList$ = this.store.pipe(select(deaconAttendees));
       }
     });
-
+    this.buildYearList();
     this.FillInForm();
     this.canAdd = false
     this.deaconForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
@@ -105,5 +105,11 @@ export class DeaconDetailComponent implements OnInit {
     } else {
       this.canAdd = false;
     }
+  }
+
+  buildYearList(): void {
+    var currentYear = new Date().getFullYear();
+    this.listYears.push(currentYear);
+    this.listYears.push(currentYear + 1);
   }
 }

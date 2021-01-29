@@ -4,22 +4,22 @@ import { AttendeeDashboardComponent } from './attendee-dashboard.component';
 
 describe('AttendeeDashboardComponent', () => {
   let component: AttendeeDashboardComponent;
-  let fixture: ComponentFixture<AttendeeDashboardComponent>;
+  let mockFormBuilder;
+  let mockStore;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AttendeeDashboardComponent ]
-    })
-    .compileComponents();
-  }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AttendeeDashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockFormBuilder = jasmine.createSpyObj('formBuilder', ['group']);
+    mockStore = jasmine.createSpyObj('store', ['dispatch']);
+
+    component = new AttendeeDashboardComponent(
+      mockFormBuilder,
+      mockStore
+    )
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

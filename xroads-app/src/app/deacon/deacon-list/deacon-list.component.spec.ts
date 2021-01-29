@@ -4,19 +4,14 @@ import { DeaconListComponent } from './deacon-list.component';
 
 describe('DeaconListComponent', () => {
   let component: DeaconListComponent;
-  let fixture: ComponentFixture<DeaconListComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DeaconListComponent ]
-    })
-    .compileComponents();
-  }));
+  let mockStore;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeaconListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+   mockStore = jasmine.createSpyObj('store', ['dispatch']);
+
+    component = new DeaconListComponent(
+      mockStore
+    )
   });
 
   it('should create', () => {

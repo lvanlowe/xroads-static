@@ -4,19 +4,17 @@ import { AttendeeDetailComponent } from './attendee-detail.component';
 
 describe('AttendeeDetailComponent', () => {
   let component: AttendeeDetailComponent;
-  let fixture: ComponentFixture<AttendeeDetailComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AttendeeDetailComponent ]
-    })
-    .compileComponents();
-  }));
+  let mockFormBuilder;
+  let mockStore;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AttendeeDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockFormBuilder = jasmine.createSpyObj('formBuilder', ['group']);
+    mockStore = jasmine.createSpyObj('store', ['dispatch']);
+
+    component = new AttendeeDetailComponent(
+      mockFormBuilder,
+      mockStore
+    )
   });
 
   it('should create', () => {

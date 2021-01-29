@@ -4,19 +4,14 @@ import { AttendeeListComponent } from './attendee-list.component';
 
 describe('AttendeeListComponent', () => {
   let component: AttendeeListComponent;
-  let fixture: ComponentFixture<AttendeeListComponent>;
+  let mockStore;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AttendeeListComponent ]
-    })
-    .compileComponents();
-  }));
+ beforeEach(() => {
+   mockStore = jasmine.createSpyObj('store', ['dispatch']);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AttendeeListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new AttendeeListComponent(
+      mockStore
+    )
   });
 
   it('should create', () => {
