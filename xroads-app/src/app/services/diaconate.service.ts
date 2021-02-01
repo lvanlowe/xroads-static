@@ -50,12 +50,20 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
     );
   }
 
-  // update(entityInfo: IEntityInfo, entity: Attendee): Observable<Attendee> {
-  //   return this.http.post<Attendee>(
-  //     `http://localhost:7071/api/AddAttendeeFunc`,
-  //     entity
-  //   );
-  // }
+  update(entityInfo: IEntityInfo, entity: Diaconate): Observable<Diaconate> {
+    return this.http.post<Diaconate>(
+      `http://localhost:7071/api/SaveDiaconateFunc`,
+      entity
+    //
+    // **********
+    // ********* for production
+    //
+    // `/api/SaveDiaconateFunc`, entity
+    //
+    // **********
+
+    );
+  }
 
   // delete(entityInfo: IEntityInfo, entity: any): Observable<any> {
   //   return this.http.delete<any>(

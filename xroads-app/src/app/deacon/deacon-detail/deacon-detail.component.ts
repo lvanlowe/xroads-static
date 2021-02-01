@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Create, LoadAll, SelectByKey } from '@briebug/ngrx-auto-entity';
+import { Create, LoadAll, SelectByKey, Update } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Attendee } from 'src/app/models/attendee';
@@ -23,7 +23,7 @@ export class DeaconDetailComponent implements OnInit {
   deaconList$: Observable<Attendee[]>;
   selectedDeacon: Attendee;
   isLoadingAttendee: boolean;
-  canAdd: boolean
+  canSave: boolean
   diaconate: Diaconate
   attendee: Attendee;
   deaconForm: FormGroup;
@@ -56,8 +56,8 @@ export class DeaconDetailComponent implements OnInit {
     });
     this.buildYearList();
     this.FillInForm();
-    this.canAdd = false
-    this.deaconForm.valueChanges.subscribe(() => {this.enableAddButton(); } );
+    this.canSave = false
+    this.deaconForm.valueChanges.subscribe(() => {this.enableSaveButton(); } );
   }
 
   private FillInForm() {
@@ -88,22 +88,29 @@ export class DeaconDetailComponent implements OnInit {
     this.diaconate.name = value.name;
   }
 
-  clickAdd() {
+  clickSave() {
     this.diaconate = {...this.diaconate, ...this.deaconForm.value};
     this.deaconForm.markAsPristine();
-    this.store.dispatch(new Create(Diaconate, this.diaconate));
-
+    if (this.diaconate.id)
+    {
+      this.store.dispatch(new Update(Diaconate, this.diaconate));
+    }
+    else {
+      this.store.dispatch(new Create(Diaconate, this.diaconate));
+    }
   }
 
   clearForm(): void{
-
+    this.deaconForm.reset();
+    this.FillInForm();
+    this.deaconForm.markAsPristine();
   }
 
-  enableAddButton(): void {
+  enableSaveButton(): void {
     if (this.deaconForm.valid && !this.deaconForm.errors) {
-      this.canAdd = true;
+      this.canSave = true;
     } else {
-      this.canAdd = false;
+      this.canSave = false;
     }
   }
 

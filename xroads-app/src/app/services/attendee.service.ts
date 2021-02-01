@@ -54,7 +54,15 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     return this.http.post<Attendee>(
       `http://localhost:7071/api/AddAttendeeFunc`,
       entity
-    );
+      //
+      // **********
+      // ********* for production
+      //
+      // `/api/AddAttendeeFunc`, entity
+      //
+      // **********
+
+      );
   }
 
   // delete(entityInfo: IEntityInfo, entity: any): Observable<any> {

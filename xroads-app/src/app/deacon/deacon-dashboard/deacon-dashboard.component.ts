@@ -50,6 +50,7 @@ export class DeaconDashboardComponent implements OnInit {
     this.canCancel = true;
     this.displayDetails = true;
     this.canAdd = false;
+    this.diaconateid = null;
   }
 
   clickCancel() {
