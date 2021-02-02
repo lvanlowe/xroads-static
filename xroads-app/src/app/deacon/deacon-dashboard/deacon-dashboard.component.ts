@@ -64,4 +64,11 @@ export class DeaconDashboardComponent implements OnInit {
     this.canAdd = false;
     this.diaconateid = id;
   }
+
+  hideDetails(){
+    this.canCancel = false;
+    this.displayDetails = false;
+    this.canAdd = true;
+    this.diaconateid = null;
+  }
 }

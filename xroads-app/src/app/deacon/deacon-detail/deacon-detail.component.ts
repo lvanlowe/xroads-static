@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Create, LoadAll, SelectByKey, Update } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
@@ -7,7 +7,7 @@ import { Attendee } from 'src/app/models/attendee';
 import { Diaconate } from 'src/app/models/diaconate';
 import { AppState } from 'src/app/state/app.state';
 import { currentAttendee, deaconAttendees, loadedAttendee, loadingAttendee } from 'src/app/state/attendee.state';
-import { currentDiaconate } from 'src/app/state/diaconate.state';
+import { currentDiaconate, savingDiaconate } from 'src/app/state/diaconate.state';
 
 @Component({
   selector: 'app-deacon-detail',
@@ -15,6 +15,8 @@ import { currentDiaconate } from 'src/app/state/diaconate.state';
   styleUrls: ['./deacon-detail.component.scss']
 })
 export class DeaconDetailComponent implements OnInit {
+
+  @Output() deaconSaved = new EventEmitter();
 
   @Input() id: string;
 
@@ -24,6 +26,8 @@ export class DeaconDetailComponent implements OnInit {
   selectedDeacon: Attendee;
   isLoadingAttendee: boolean;
   canSave: boolean
+  isSaving: boolean;
+  diaconteSaved = false;
   diaconate: Diaconate
   attendee: Attendee;
   deaconForm: FormGroup;
@@ -56,6 +60,15 @@ export class DeaconDetailComponent implements OnInit {
     });
     this.buildYearList();
     this.FillInForm();
+    this.store.pipe(select(savingDiaconate))
+    .subscribe(saving => {
+      this.isSaving == saving;
+      if (!this.isSaving && this.diaconteSaved) {
+        this.canSave = false;
+        this.diaconteSaved = false;
+        this.deaconSaved.emit();
+      }
+    })
     this.canSave = false
     this.deaconForm.valueChanges.subscribe(() => {this.enableSaveButton(); } );
   }
@@ -98,6 +111,7 @@ export class DeaconDetailComponent implements OnInit {
     else {
       this.store.dispatch(new Create(Diaconate, this.diaconate));
     }
+    this.diaconteSaved = true;
   }
 
   clearForm(): void{
