@@ -42,3 +42,13 @@ export const isNurseryRole = createSelector(
     return false;
   }}
 );
+
+export const isAdminRole = createSelector(
+  currentUserInfo,
+  (userInfo) => {
+    if (userInfo && userInfo.userRoles.find(u => u === 'admin' )) {
+    return true;
+  } else {
+    return false;
+  }}
+);

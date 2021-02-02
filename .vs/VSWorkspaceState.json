@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github",
     "\\api",
-    "\\api\\deacons-get",
-    "\\api\\shared",
-    "\\xroads-app"
+    "\\api\\api"
   ],
-  "SelectedNode": "\\api\\shared\\deacon-data.js",
+  "SelectedNode": "\\api\\api\\GetDeaconCalendarFunc.cs",
   "PreviewInSolutionExplorer": false
 }

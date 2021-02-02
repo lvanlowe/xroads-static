@@ -58,7 +58,12 @@ C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\bin\Debug\netcoreapp3.1\Mi
 C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.csprojAssemblyReference.cache
 C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.AssemblyInfoInputs.cache
 C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.AssemblyInfo.cs
-C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.csproj.CoreCompileInputs.cache
 C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.csproj.CopyComplete
 C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.dll
 C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.pdb
+C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\bin\Debug\netcoreapp3.1\Microsoft.Azure.Documents.ChangeFeedProcessor.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\bin\Debug\netcoreapp3.1\Microsoft.Azure.DocumentDB.Core.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\bin\Debug\netcoreapp3.1\Microsoft.Azure.WebJobs.Extensions.CosmosDB.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\bin\Debug\netcoreapp3.1\runtimes\win7-x64\native\Cosmos.CRTCompat.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\bin\Debug\netcoreapp3.1\runtimes\win7-x64\native\Microsoft.Azure.Documents.ServiceInterop.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\api\api\obj\Debug\netcoreapp3.1\api.csproj.CoreCompileInputs.cache

@@ -1,0 +1,16 @@
+<mat-progress-spinner mode="indeterminate" *ngIf="isLoadingAttendee"></mat-progress-spinner>
+<kendo-grid
+  [data]="view | async"
+  [height]="410"
+  (edit)="editHandler($event)"
+  >
+  <kendo-grid-column field="firstName" title="First Name" width="100">
+  </kendo-grid-column>
+  <kendo-grid-column field="lastName" title="Last Name" width="100">
+  </kendo-grid-column>
+  <kendo-grid-command-column title="command" width="80" *ngIf="isDeacon$ | async">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand [primary]="true">Edit</button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

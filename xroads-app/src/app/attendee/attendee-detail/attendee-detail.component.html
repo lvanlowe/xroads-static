@@ -1,0 +1,40 @@
+<div class="example-wrap">
+  <form class="k-form" [formGroup]="attendeeForm">
+      <fieldset class="k-form-fieldset">
+        <legend class="k-form-legend">Enter Information</legend>
+        <mat-progress-bar mode="query" *ngIf="isSaving"></mat-progress-bar>
+        <kendo-formfield>
+          <kendo-label [for]="firstName" text="First Name"></kendo-label>
+          <input formControlName="firstName" kendoTextBox #firstName/>
+          <kendo-formhint>first name</kendo-formhint>
+          <kendo-formerror>Error: First name is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="lastName" text="Last Name"></kendo-label>
+          <input formControlName="lastName" kendoTextBox #lastName required/>
+          <kendo-formhint>last name</kendo-formhint>
+          <kendo-formerror>Error: Last name is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="cell" text="Cell" [optional]="true" ></kendo-label>
+          <kendo-maskedtextbox formControlName="cell" [mask]=mask #cell></kendo-maskedtextbox>
+          <kendo-formhint>cell for attendee</kendo-formhint>
+          <kendo-formerror>Error: Not valid phone format</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="email" text="Email" [optional]="true" ></kendo-label>
+          <input formControlName="email" kendoTextBox #email/>
+          <kendo-formhint>email for attendee</kendo-formhint>
+          <kendo-formerror>Error: Not valid email format</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="isDeacon" text="Deacon"></kendo-label>
+          <kendo-switch formControlName="isDeacon" [onLabel]="'Yes'" [offLabel]="'No'" #isDeacon></kendo-switch>
+        </kendo-formfield>
+        <div class="k-form-buttons">
+          <button class="k-button k-primary" [disabled]="!canSave"  (click)="clickSave()">Save</button>
+          <button class="k-button" (click)="clearForm()">Reset</button>
+      </div>
+      </fieldset>
+  </form>
+</div>

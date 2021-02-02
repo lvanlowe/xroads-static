@@ -28,6 +28,25 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeaconCalendar } from './models/deacon-calendar';
 import { DeaconCalendarService } from './services/deacon-calendar.service';
+import { AttendeeDashboardComponent } from './attendee/attendee-dashboard/attendee-dashboard.component';
+import { AttendeeDetailComponent } from './attendee/attendee-detail/attendee-detail.component';
+import { Attendee } from './models/attendee';
+import { AttendeeService } from './services/attendee.service';
+import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
+import { MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSliderModule } from '@angular/material';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from '@progress/kendo-angular-label';
+import { AttendeeListComponent } from './attendee/attendee-list/attendee-list.component';
+import { DeaconDetailComponent } from './deacon/deacon-detail/deacon-detail.component';
+import { DeaconDashboardComponent } from './deacon/deacon-dashboard/deacon-dashboard.component';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { Diaconate } from './models/diaconate';
+import { DiaconateService } from './services/diaconate.service';
+import { DeaconListComponent } from './deacon/deacon-list/deacon-list.component';
+
+
+
+
 
 
 
@@ -39,7 +58,13 @@ import { DeaconCalendarService } from './services/deacon-calendar.service';
     DeaconReviewComponent,
     UsherReviewComponent,
     NurseryReviewComponent,
-    CustomToolComponent
+    CustomToolComponent,
+    AttendeeDashboardComponent,
+    AttendeeDetailComponent,
+    AttendeeListComponent,
+    DeaconDetailComponent,
+    DeaconDashboardComponent,
+    DeaconListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +73,10 @@ import { DeaconCalendarService } from './services/deacon-calendar.service';
     ButtonsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatProgressSpinnerModule,
     GridModule,
     MenusModule,
     LayoutModule,
@@ -56,10 +85,16 @@ import { DeaconCalendarService } from './services/deacon-calendar.service';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     NgrxAutoEntityModule.forRoot(),
-    GridModule // Add this!
+    GridModule,
+    ProgressBarModule,
+    InputsModule,
+    LabelModule,
+    DropDownsModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
-              { provide: DeaconCalendar, useClass: DeaconCalendarService }
+              { provide: DeaconCalendar, useClass: DeaconCalendarService },
+              { provide: Attendee, useClass: AttendeeService },
+              { provide: Diaconate, useClass: DiaconateService },
   ],
   bootstrap: [AppComponent]
 })
