@@ -102,7 +102,9 @@ export class DeaconDetailComponent implements OnInit {
 
   clearForm(): void{
     this.deaconForm.reset();
-    this.FillInForm();
+    this.deaconForm.patchValue(this.diaconate);
+    this.attendee$.subscribe(results => { this.attendee = results; });
+    this.deaconForm.controls.deacon.setValue(this.attendee);
     this.deaconForm.markAsPristine();
   }
 
