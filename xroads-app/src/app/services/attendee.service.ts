@@ -25,7 +25,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     // **********
     // ********* for production
     //
-    `/api/GetAttendeeFunc`
+    `/GetAttendeeFunc`
     //
     // **********
 
@@ -43,7 +43,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     // **********
     // ********* for production
     //
-    `/api/AddAttendeeFunc`, entity
+    `/AddAttendeeFunc`, entity
     //
     // **********
 
@@ -58,7 +58,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
       // **********
       // ********* for production
       //
-      `/api/AddAttendeeFunc`, entity
+      `/AddAttendeeFunc`, entity
       //
       // **********
 
