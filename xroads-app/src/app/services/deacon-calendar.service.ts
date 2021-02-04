@@ -21,7 +21,7 @@ export class DeaconCalendarService implements IAutoEntityService<DeaconCalendar>
 
   loadAll(entityInfo: IEntityInfo): Observable<DeaconCalendar[]> {
     return this.http.get<DeaconCalendar[]>(
-      `http://localhost:7071/api/GetDeaconCalendarFunc`
+      `https://xroads-static.azurewebsites.net/api/GetDeaconCalendarFunc?code=EBhnNg8qEUUd5xRehotbR7F1qsbkaaO58JEpCaZ39VpwNf/lJdN1QQ==`
     );
   }
 

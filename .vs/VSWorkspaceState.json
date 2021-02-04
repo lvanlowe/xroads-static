@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\.github",
-    "\\api",
-    "\\api\\api"
+    "\\api"
   ],
-  "SelectedNode": "\\api\\api\\GetDeaconCalendarFunc.cs",
+  "SelectedNode": "\\api",
   "PreviewInSolutionExplorer": false
 }

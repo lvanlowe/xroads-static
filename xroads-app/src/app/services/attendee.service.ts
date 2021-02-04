@@ -25,7 +25,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     // **********
     // ********* for production
     //
-    `/GetAttendeeFunc`
+    `https://xroads-static.azurewebsites.net/api/GetAttendeeFunc?code=GZ2F5jp1vacHlyND1i4Twz2LyX6JA4H/Re9iW4IfO/HgWkfWu013xg==`
     //
     // **********
 
@@ -43,7 +43,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
     // **********
     // ********* for production
     //
-    `/AddAttendeeFunc`, entity
+    `https://xroads-static.azurewebsites.net/api/AddAttendeeFunc?code=Mny1wa0ZTxUV3uJtcDL6RG4TxrShEY1YVZVD4eonWAvRv31F4l6Guw==`, entity
     //
     // **********
 
@@ -58,7 +58,7 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
       // **********
       // ********* for production
       //
-      `/AddAttendeeFunc`, entity
+      `https://xroads-static.azurewebsites.net/api/AddAttendeeFunc?code=Mny1wa0ZTxUV3uJtcDL6RG4TxrShEY1YVZVD4eonWAvRv31F4l6Guw==`, entity
       //
       // **********
 
