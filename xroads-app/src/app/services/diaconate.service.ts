@@ -25,7 +25,7 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
     // **********
     // ********* for production
     //
-    `https://xroads-static.azurewebsites.net/api/GetDiaconateFunc?code=xEXnW0Ew0zhtGjc03MEr0fNbI6ahOpVzl7WYDXdrypd5tsbtEjfaVA==`
+    `api/GetDiaconateFunc`
     //
     // **********
 
@@ -43,7 +43,7 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
     // **********
     // ********* for production
     //
-    `https://xroads-static.azurewebsites.net/api/SaveDiaconateFunc?code=a5024Ixc7zUcgu0wanQLzOw17/OiZrQFyQYxiLLtHhaf9bcsvLxr9w==`, entity
+    `api/SaveDiaconateFunc`, entity
     //
     // **********
 
@@ -61,7 +61,7 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
     // **********
     // ********* for production
     //
-    `https://xroads-static.azurewebsites.net/api/SaveDiaconateFunc?code=a5024Ixc7zUcgu0wanQLzOw17/OiZrQFyQYxiLLtHhaf9bcsvLxr9w==`, entity
+    `api/SaveDiaconateFunc`, entity
     //
     // **********
 
