@@ -80,5 +80,71 @@ namespace xroadsProcessesTest
             Assert.Equal(toName, _message.Personalizations[0].Tos[0].Name);
         }
 
+        [Fact]
+        public void BuildEmailCopyTest_no_copy()
+        {
+            _worker = new MessageWorker(_message);
+            var toEmail = "spiderman@marvel.comic";
+            var toName = "Peter Parker";
+            _message.AddTo(toEmail, toName);
+            var ccEmail = string.Empty;
+            _worker.BuildEmailCopy(ccEmail);
+            Assert.Null(_message.Personalizations[0].Ccs);
+        }
+
+        [Fact]
+        public void BuildEmailCopyTest_1_email()
+        {
+            _worker = new MessageWorker(_message);
+            var toEmail = "spiderman@marvel.comic";
+            var toName = "Peter Parker";
+            _message.AddTo(toEmail, toName);
+            var ccEmail = "hulk@marvel.comic";
+            _worker.BuildEmailCopy(ccEmail);
+            Assert.Equal(ccEmail, _message.Personalizations[0].Ccs[0].Email);
+        }
+
+        [Fact]
+        public void BuildEmailCopyTest_1_email_1_name()
+        {
+            _worker = new MessageWorker(_message);
+            var toEmail = "spiderman@marvel.comic";
+            var toName = "Peter Parker";
+            _message.AddTo(toEmail, toName);
+            var ccEmail = "hulk@marvel.comic;Bruce Banner";
+            _worker.BuildEmailCopy(ccEmail);
+            Assert.Equal("hulk@marvel.comic", _message.Personalizations[0].Ccs[0].Email);
+            Assert.Equal("Bruce Banner", _message.Personalizations[0].Ccs[0].Name);
+        }
+
+        [Fact]
+        public void BuildEmailCopyTest_2_email_2_name()
+        {
+            _worker = new MessageWorker(_message);
+            var toEmail = "spiderman@marvel.comic";
+            var toName = "Peter Parker";
+            _message.AddTo(toEmail, toName);
+            var ccEmail = "hulk@marvel.comic;Bruce Banner;ironman@marvel.comic;Tony Stark";
+            _worker.BuildEmailCopy(ccEmail);
+            Assert.Equal("hulk@marvel.comic", _message.Personalizations[0].Ccs[0].Email);
+            Assert.Equal("Bruce Banner", _message.Personalizations[0].Ccs[0].Name);
+            Assert.Equal("ironman@marvel.comic", _message.Personalizations[0].Ccs[1].Email);
+            Assert.Equal("Tony Stark", _message.Personalizations[0].Ccs[1].Name);
+        }
+
+        [Fact]
+        public void BuildEmailCopyTest_2_email_1_name()
+        {
+            _worker = new MessageWorker(_message);
+            var toEmail = "spiderman@marvel.comic";
+            var toName = "Peter Parker";
+            _message.AddTo(toEmail, toName);
+            var ccEmail = "hulk@marvel.comic;;ironman@marvel.comic;Tony Stark";
+            _worker.BuildEmailCopy(ccEmail);
+            Assert.Equal("hulk@marvel.comic", _message.Personalizations[0].Ccs[0].Email);
+            //Assert.Equal("Bruce Banner", _message.Personalizations[0].Ccs[0].Name);
+            Assert.Equal("ironman@marvel.comic", _message.Personalizations[0].Ccs[1].Email);
+            Assert.Equal("Tony Stark", _message.Personalizations[0].Ccs[1].Name);
+        }
     }
 }

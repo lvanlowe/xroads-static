@@ -34,7 +34,25 @@ namespace xroadsProcesses.Worker
                 new EmailAddress {Email = toEmail, Name = toName}
             };
             _message.AddTos(emailAddresses);
+        }
 
+        public void BuildEmailCopy(string ccEmail)
+        {
+            if (string.IsNullOrEmpty(ccEmail)) return;
+            var i = 0;
+            string[] splitList = { ";" };
+            var ccList = ccEmail.Split(splitList, StringSplitOptions.None);
+            while (i < ccList.Length)
+            {
+                if (i + 1 < ccList.Length)
+                {
+                    _message.AddCc(ccList[i++], ccList[i++]);
+                }
+                else
+                {
+                    _message.AddCc(ccList[i++]);
+                }
+            }
         }
     }
 }
