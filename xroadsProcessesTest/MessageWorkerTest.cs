@@ -142,7 +142,6 @@ namespace xroadsProcessesTest
             var ccEmail = "hulk@marvel.comic;;ironman@marvel.comic;Tony Stark";
             _worker.BuildEmailCopy(ccEmail);
             Assert.Equal("hulk@marvel.comic", _message.Personalizations[0].Ccs[0].Email);
-            //Assert.Equal("Bruce Banner", _message.Personalizations[0].Ccs[0].Name);
             Assert.Equal("ironman@marvel.comic", _message.Personalizations[0].Ccs[1].Email);
             Assert.Equal("Tony Stark", _message.Personalizations[0].Ccs[1].Name);
         }
