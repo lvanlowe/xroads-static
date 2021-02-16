@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using SendGrid.Helpers.Mail;
+using xroadsProcesses.DTO;
 
 namespace xroadsProcesses.Worker
 {
@@ -9,9 +10,26 @@ namespace xroadsProcesses.Worker
     {
         private readonly SendGridMessage _message;
 
+        private const string DeaconDutyTemplate = "d-745be84bfa184e4282d327a53082c2ba";
+
         public MessageWorker(SendGridMessage message)
         {
             _message = message;
+        }
+
+        public SendGridMessage PrepareDiaconateEmail(DeaconDuty deacon)
+        {
+            BuildEmailFrom(deacon.FromEmail, deacon.FromName);
+            BuildEmailTo(deacon.Email, deacon.Name);
+            BuildEmailCopy(deacon.Copy);
+            SetUpTemplate(DeaconDutyTemplate, deacon);
+            return _message;
+        }
+
+        private void SetUpTemplate(string template, DeaconDuty deacon)
+        {
+            _message.SetTemplateId(template);
+            _message.SetTemplateData(deacon);
         }
 
 

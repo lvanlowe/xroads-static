@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api.csproj", "{8A2BE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xroadsProcesses", "..\xroadsProcesses\xroadsProcesses.csproj", "{A04E0741-382F-4F55-8B46-D81519F8717A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xroadsProcessesTest", "..\xroadsProcessesTest\xroadsProcessesTest.csproj", "{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xroadsProcessesTest", "..\xroadsProcessesTest\xroadsProcessesTest.csproj", "{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

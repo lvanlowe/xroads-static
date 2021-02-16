@@ -3,7 +3,11 @@
   "Values": {
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "CosmosDBConnection": "AccountEndpoint=https://crossroadspca.documents.azure.com:443/;AccountKey=3LTNvwrbQhL7NzzVbyfsvWFTOUnf2jZdNnX1Dq3C7NsePoYp4z3qYoFOAOkExPt6KOm9PjIjI4rUcLsrplk5Jg==;"
+    "CosmosDBConnection": "AccountEndpoint=https://crossroadspca.documents.azure.com:443/;AccountKey=3LTNvwrbQhL7NzzVbyfsvWFTOUnf2jZdNnX1Dq3C7NsePoYp4z3qYoFOAOkExPt6KOm9PjIjI4rUcLsrplk5Jg==;",
+    "CustomSendGridKeyAppSettingName": "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",
+    "DeaconDutyFromEmail": "crossroadsDeacons@nuttin-but.net",
+    "DeaconDutyFromName":  "Crossroads Deacons",
+    "DeaconDutyCopy" : "van@nuttin-but.net;Van Lowe;webmaster@pwsova.org;L. A. Van Lowe " 
   },
   "Host": {
     "CORS": "http://localhost:4200"
