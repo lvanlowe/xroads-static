@@ -26,69 +26,90 @@ namespace api
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var connection = System.Environment.GetEnvironmentVariable("CosmosDBConnection");
-
-            var cosmosClient = new CosmosClient(connection);
-            var databaseId = "ministries";
-            var containerId = "diaconate";
-            var database = await cosmosClient.CreateDatabaseIfNotExistsAsync(databaseId);
-            var container = await database.Database.CreateContainerIfNotExistsAsync(containerId, "/year");
+            var connection = Environment.GetEnvironmentVariable("CosmosDBConnection");
 
 
-            var sqlQueryText = "SELECT * FROM c WHERE c.month = 1";
-            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
-            FeedIterator<DiaconateDB> queryResultSetIterator = container.Container.GetItemQueryIterator<DiaconateDB>(queryDefinition);
-            List<DiaconateDB> families = new List<DiaconateDB>();
-
-            while (queryResultSetIterator.HasMoreResults)
+            try
             {
-                FeedResponse<DiaconateDB> currentResultSet = await queryResultSetIterator.ReadNextAsync();
-                foreach (DiaconateDB deaconx in currentResultSet)
+                var cosmosClient = new CosmosClient(connection);
+                const string databaseId = "ministries";
+                var database = await cosmosClient.CreateDatabaseIfNotExistsAsync(databaseId);
+                var deacon = new DeaconDuty { Month = DateTime.Now.AddMonths(1).ToString("MMMM") };
+
+                await GetCurrentDeacon(database.Database, deacon);
+                if (string.IsNullOrEmpty(deacon.AttendeeId))
                 {
-                    families.Add(deaconx);
+                    log.LogInformation("Deacon not found");
+                    return new BadRequestResult();
                 }
+                await GetDeaconInformation(database.Database, deacon);
+                if (string.IsNullOrEmpty(deacon.AttendeeId))
+                {
+                    log.LogInformation("Deacon not found");
+                    return new BadRequestResult();
+                }
+
+                var message = new SendGridMessage();
+                var worker = new MessageWorker(message);
+
+                deacon.FromEmail = Environment.GetEnvironmentVariable("DeaconDutyFromEmail");
+                deacon.FromName = Environment.GetEnvironmentVariable("DeaconDutyFromName");
+                deacon.Copy = Environment.GetEnvironmentVariable("DeaconDutyCopy");
+
+                await messageCollector.AddAsync(worker.PrepareDiaconateEmail(deacon));
+
+            }
+            catch (Exception e)
+            {
+                log.LogInformation(e.ToString());
+                return new BadRequestResult();
             }
 
-            var message = new SendGridMessage();
-            var worker = new MessageWorker(message);
-            var deacon = new DeaconDuty{Email = "lvanlowe@comcast.net", Name = "Van", FirstName = "Van", Month = "March"};
-
- 
-
-            deacon.FromEmail = System.Environment.GetEnvironmentVariable("DeaconDutyFromEmail");
-            deacon.FromName = System.Environment.GetEnvironmentVariable("DeaconDutyFromName");
-            deacon.Copy = System.Environment.GetEnvironmentVariable("DeaconDutyCopy");
-
-            await messageCollector.AddAsync(worker.PrepareDiaconateEmail(deacon));
 
             return new OkResult();
         }
 
-        // <QueryWithSqlParameters>
-        private static async Task QueryWithSqlParameters(Container container)
+
+        private static async Task GetDeaconInformation(Database database, DeaconDuty deacon)
         {
-            // Query using two properties within each item. WHERE Id == "" AND Address.City == ""
-            // notice here how we are doing an equality comparison on the string value of City
+            const string attendeeContainerId = "attendee";
+            var attendeeContainer = await database.CreateContainerIfNotExistsAsync(attendeeContainerId, "/lastName");
 
-            QueryDefinition query = new QueryDefinition("SELECT * FROM Families f WHERE f.id = @id AND f.Address.City = @city")
-                .WithParameter("@id", "AndersonDiaconateDB")
-                .WithParameter("@city", "Seattle");
-
-            List<DiaconateDB> results = new List<DiaconateDB>();
-            using FeedIterator<DiaconateDB> resultSetIterator = container.GetItemQueryIterator<DiaconateDB>(
-                query,
-                requestOptions: new QueryRequestOptions()
-                {
-                    PartitionKey = new PartitionKey("Anderson")
-                });
-            while (resultSetIterator.HasMoreResults)
+            var attendeeQuery = "SELECT * FROM a WHERE a.id = '" + deacon.AttendeeId + "'";
+            var attendeeQueryDefinition = new QueryDefinition(attendeeQuery);
+            var attendeeIterator =
+                attendeeContainer.Container.GetItemQueryIterator<AttendeeDB>(attendeeQueryDefinition);
+            var members = new List<AttendeeDB>();
+            while (attendeeIterator.HasMoreResults)
             {
-                FeedResponse<DiaconateDB> response = await resultSetIterator.ReadNextAsync();
-                results.AddRange(response);
-                if (response.Diagnostics != null)
-                {
-                }
+                var attendeeResults = await attendeeIterator.ReadNextAsync();
+                members.AddRange(attendeeResults);
             }
+
+            deacon.FirstName = members[0].firstName;
+            deacon.LastName = members[0].lastName;
+            deacon.Email = members[0].email;
         }
+
+        private static async Task GetCurrentDeacon(Database database, DeaconDuty deacon)
+        {
+            const string deaconContainerId = "diaconate";
+
+            var deaconContainer = await database.CreateContainerIfNotExistsAsync(deaconContainerId, "/year");
+            var deaconQuery = "SELECT * FROM c WHERE c.month = " + DateTime.Now.AddMonths(1).Month + " AND c.year = " + DateTime.Now.AddMonths(1).Year;
+            var deaconQueryDefinition = new QueryDefinition(deaconQuery);
+            var deaconIterator = deaconContainer.Container.GetItemQueryIterator<DiaconateDB>(deaconQueryDefinition);
+            var deacons = new List<DiaconateDB>();
+
+            while (deaconIterator.HasMoreResults)
+            {
+                var deaconResults = await deaconIterator.ReadNextAsync();
+                deacons.AddRange(deaconResults);
+            }
+
+            deacon.Name = deacons[0].name;
+            deacon.AttendeeId = deacons[0].attendeeId;
+        }
+
     }
 }
