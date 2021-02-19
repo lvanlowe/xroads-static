@@ -27,12 +27,14 @@ export class DeaconDetailComponent implements OnInit {
   isLoadingAttendee: boolean;
   canSave: boolean
   isSaving: boolean;
+  dateFormat = 'MM/dd/yyyy HH:mm';
   diaconteSaved = false;
   diaconate: Diaconate
   attendee: Attendee;
   deaconForm: FormGroup;
   diaconate$: Observable<Diaconate>;
   attendee$: Observable<Attendee>;
+  selectedMeeting: Date;
 
   constructor(private formBuilder: FormBuilder, private store: Store<AppState>) { }
 
@@ -91,6 +93,7 @@ export class DeaconDetailComponent implements OnInit {
         month: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required),
         deacon: new FormControl(null, Validators.required),
+        meetingDate: new FormControl(),
       }
     );
   }

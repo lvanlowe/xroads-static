@@ -6,4 +6,6 @@ export class Diaconate {
   month: number;
   name: string;
   attendeeId: string;
+  meetingDate?: Date;
+  meetingUrl?: string;
 }

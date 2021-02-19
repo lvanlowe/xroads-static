@@ -43,6 +43,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { Diaconate } from './models/diaconate';
 import { DiaconateService } from './services/diaconate.service';
 import { DeaconListComponent } from './deacon/deacon-list/deacon-list.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
 
 
 
@@ -89,7 +91,8 @@ import { DeaconListComponent } from './deacon/deacon-list/deacon-list.component'
     ProgressBarModule,
     InputsModule,
     LabelModule,
-    DropDownsModule // Add this!
+    DropDownsModule,
+    DateInputsModule // Add this!
   ],
   providers: [{ provide: UserInfo, useClass: UserInfoService },
               { provide: DeaconCalendar, useClass: DeaconCalendarService },
