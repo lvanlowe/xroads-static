@@ -94,6 +94,7 @@ export class DeaconDetailComponent implements OnInit {
         year: new FormControl('', Validators.required),
         deacon: new FormControl(null, Validators.required),
         meetingDate: new FormControl(),
+        meetingUrl: new FormControl(),
       }
     );
   }
