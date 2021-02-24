@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using SendGrid.Helpers.Mail;
 using xroadsProcesses.DTO;
+using xroadsProcesses.Models;
 using xroadsProcesses.Worker;
 
 namespace FunctionApp
@@ -16,7 +14,7 @@ namespace FunctionApp
     public static class SendDiaconateEmailFunc
     {
         [FunctionName("SendDiaconateEmailFunc")]
-        public static async Task RunAsync([TimerTrigger("0 0 15 * * SAT")]TimerInfo myTimer,
+        public static async Task RunAsync([TimerTrigger("0 0 15 * * THU")]TimerInfo myTimer,
             [SendGrid(ApiKey = "CustomSendGridKeyAppSettingName")] IAsyncCollector<SendGridMessage> messageCollector,
             ILogger log)
         {
