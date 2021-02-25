@@ -3,9 +3,10 @@ import { LoadAll, SelectByKey } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Diaconate } from 'src/app/models/diaconate';
+import { UserInfo } from 'src/app/models/user-info';
 import { AppState } from 'src/app/state/app.state';
 import { allDiaconates, loadedDiaconate, loadingDiaconate } from 'src/app/state/diaconate.state';
-import { isDeaconRole } from 'src/app/state/user-info.state';
+import { currentUserInfo, isDeaconRole } from 'src/app/state/user-info.state';
 
 @Component({
   selector: 'app-deacon-list',
@@ -18,6 +19,7 @@ export class DeaconListComponent implements OnInit {
   isDeacon$: Observable<boolean>;
   view: Observable<Diaconate[]>;
   isLoadingDiaconate: boolean;
+  userInfo: UserInfo;
 
   constructor(private store: Store<AppState>) { }
 
@@ -33,8 +35,13 @@ export class DeaconListComponent implements OnInit {
       this.isLoadingDiaconate = loading;
       this.view = this.store.pipe(select(allDiaconates));
     });
+    this.store.pipe(select(currentUserInfo))
+    .subscribe(user => {
+      this.userInfo = user;})
+    if ( this.userInfo != null) {
+      this.isDeacon$ = this.store.pipe(select(isDeaconRole));
+    }
 
-    this.isDeacon$ = this.store.pipe(select(isDeaconRole));
   }
 
   editHandler({sender, rowIndex, dataItem}){
