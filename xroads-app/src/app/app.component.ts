@@ -57,15 +57,15 @@ export class AppComponent implements OnInit {
 
     // ********* for testing
     //
-    // this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
-    // this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
-    // this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
+    this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
+    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
+    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
     //
     // **********
 
     // ********* for production
     //
-    this.userInfo = await this.getUserInfo();
+    // this.userInfo = await this.getUserInfo();
     //
     // **********
 
