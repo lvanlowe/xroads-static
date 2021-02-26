@@ -90,6 +90,7 @@ async getUserInfo() {
     const payload = await response.json();
     const { clientPrincipal } = payload;
     this.userInfo = clientPrincipal;
+    console.log(this.userInfo);
     this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
     this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
     return clientPrincipal;
