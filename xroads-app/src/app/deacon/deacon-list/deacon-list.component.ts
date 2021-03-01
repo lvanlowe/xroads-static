@@ -38,9 +38,9 @@ export class DeaconListComponent implements OnInit {
     this.store.pipe(select(currentUserInfo))
     .subscribe(user => {
       this.userInfo = user;})
-    if ( this.userInfo != null) {
+    // if ( this.userInfo != null) {
       this.isDeacon$ = this.store.pipe(select(isDeaconRole));
-    }
+    // }
 
   }
 
