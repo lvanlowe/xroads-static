@@ -79,7 +79,9 @@ export class DeaconDetailComponent implements OnInit {
     if (this.id.length > 0) {
       this.diaconate$ = this.store.pipe(select(currentDiaconate));
       this.diaconate$.subscribe(results => { this.diaconate = results; });
+      console.log(this.diaconate)
       this.deaconForm.patchValue(this.diaconate);
+      this.deaconForm.controls.meetingTime.setValue(new Date(this.diaconate.meetingDate))
       this.store.dispatch(new SelectByKey(Attendee, this.diaconate.attendeeId));
       this.attendee$ = this.store.pipe(select(currentAttendee));
       this.attendee$.subscribe(results => { this.attendee = results; });
@@ -93,7 +95,7 @@ export class DeaconDetailComponent implements OnInit {
         month: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required),
         deacon: new FormControl(null, Validators.required),
-        meetingDate: new FormControl(),
+        meetingTime: new FormControl(),
         meetingUrl: new FormControl(),
       }
     );
@@ -107,6 +109,7 @@ export class DeaconDetailComponent implements OnInit {
 
   clickSave() {
     this.diaconate = {...this.diaconate, ...this.deaconForm.value};
+    this.diaconate.meetingDate = this.deaconForm.controls.meetingTime.value;
     this.deaconForm.markAsPristine();
     if (this.diaconate.id)
     {
