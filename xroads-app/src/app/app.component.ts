@@ -92,11 +92,10 @@ async getUserInfo() {
     this.userInfo = clientPrincipal;
     console.log(this.userInfo);
     if ( this.userInfo != null) {
-      return undefined;
+      this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
+      this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
+      return clientPrincipal;
     }
-    this.store.dispatch(new CreateSuccess(UserInfo, this.userInfo));
-    this.store.dispatch(new SelectByKey(UserInfo, this.userInfo.userId ));
-    return clientPrincipal;
   } catch (error) {
     console.error('No profile could be found');
     return undefined;
