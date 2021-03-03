@@ -109,7 +109,7 @@ export class DeaconDetailComponent implements OnInit {
 
   clickSave() {
     this.diaconate = {...this.diaconate, ...this.deaconForm.value};
-    this.diaconate.meetingDate = this.deaconForm.controls.meetingTime.value;
+    this.diaconate.newMeetingDate = this.deaconForm.controls.meetingTime.value;
     this.deaconForm.markAsPristine();
     if (this.diaconate.id)
     {
