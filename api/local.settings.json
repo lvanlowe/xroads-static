@@ -8,7 +8,8 @@
     "CustomSendGridKeyAppSettingName": "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",
     "DeaconDutyFromEmail": "crossroadsDeacons@nuttin-but.net",
     "DeaconDutyFromName": "Crossroads Deacons",
-    "DeaconDutyCopy": "van@nuttin-but.net;Van Lowe;webmaster@pwsova.org;L. A. Van Lowe "
+    "DeaconDutyCopy": "van@nuttin-but.net;Van Lowe;webmaster@pwsova.org;L. A. Van Lowe ",
+    "MeetingUrl": "https://xroads-functions.azurewebsites.net/api/SendDiaconateMeetingEmailFunc?code=a6y3x9JqI6CDLDMg06wI5gr7YODSZghR8zJ2/w2XEkYrQ8RLDWe02g=="
   },
   "Host": {
     "CORS": "http://localhost:4200"
