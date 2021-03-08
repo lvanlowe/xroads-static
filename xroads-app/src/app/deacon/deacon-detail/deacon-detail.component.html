@@ -1,4 +1,3 @@
-<p>deacon-detail works!</p>
 <div class="example-wrap">
   <form class="k-form" [formGroup]="deaconForm">
     <fieldset class="k-form-fieldset">
@@ -45,12 +44,12 @@
         <kendo-formhint>Date of Deacon meeting for the month</kendo-formhint>
       </kendo-formfield>
       <kendo-formfield>
-        <kendo-label [for]="meetingUrl" text="Meeting URL" [optional]="true"></kendo-label>
+        <kendo-label [for]="meetingUrl" text="Meeting URL" [optional]="true" ></kendo-label>
         <input formControlName="meetingUrl" kendoTextBox #meetingUrl/>
         <kendo-formhint>Deacon Meeting URL</kendo-formhint>
     </kendo-formfield>
       <div class="k-form-buttons">
-        <button class="k-button k-primary" [disabled]="!canSave"  (click)="clickSave()">Save</button>
+        <button class="k-button k-primary" (click)="clickSave()">Save</button>
         <button class="k-button" (click)="clearForm()">Reset</button>
       </div>
     </fieldset>

@@ -86,6 +86,8 @@ export class DeaconDetailComponent implements OnInit {
       this.attendee$ = this.store.pipe(select(currentAttendee));
       this.attendee$.subscribe(results => { this.attendee = results; });
       this.deaconForm.controls.deacon.setValue(this.attendee);
+      this.deaconForm.controls.meetingTime.enable();
+      this.deaconForm.controls.meetingUrl.enable();
     }
   }
 
@@ -95,8 +97,8 @@ export class DeaconDetailComponent implements OnInit {
         month: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required),
         deacon: new FormControl(null, Validators.required),
-        meetingTime: new FormControl(),
-        meetingUrl: new FormControl(),
+        meetingTime: new FormControl({ value: null, disabled: true }),
+        meetingUrl: new FormControl({ value: null, disabled: true }),
       }
     );
   }
