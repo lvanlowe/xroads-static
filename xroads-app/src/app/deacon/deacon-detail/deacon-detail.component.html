@@ -49,7 +49,7 @@
         <kendo-formhint>Deacon Meeting URL</kendo-formhint>
     </kendo-formfield>
       <div class="k-form-buttons">
-        <button class="k-button k-primary" (click)="clickSave()">Save</button>
+        <button class="k-button k-primary" [disabled]="!canSave" (click)="clickSave()">Save</button>
         <button class="k-button" (click)="clearForm()">Reset</button>
       </div>
     </fieldset>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Create, LoadAll, SelectByKey, Update } from '@briebug/ngrx-auto-entity';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -41,7 +41,7 @@ export class DeaconDetailComponent implements OnInit {
   ngOnInit() {
 
     this.buildDeaconForm(this.formBuilder);
-    this.deaconForm.markAsPristine();
+
     this.diaconate = new Diaconate;
 
     this.store.pipe(select(loadedAttendee)).subscribe(loaded => {
@@ -62,6 +62,7 @@ export class DeaconDetailComponent implements OnInit {
     });
     this.buildYearList();
     this.FillInForm();
+    this.deaconForm.markAsPristine();
     this.store.pipe(select(savingDiaconate))
     .subscribe(saving => {
       this.isSaving == saving;
@@ -81,7 +82,9 @@ export class DeaconDetailComponent implements OnInit {
       this.diaconate$.subscribe(results => { this.diaconate = results; });
       console.log(this.diaconate)
       this.deaconForm.patchValue(this.diaconate);
-      this.deaconForm.controls.meetingTime.setValue(new Date(this.diaconate.meetingDate))
+      if (this.diaconate.meetingDate !== null) {
+        this.deaconForm.controls.meetingTime.setValue(new Date(this.diaconate.meetingDate))
+      }
       this.store.dispatch(new SelectByKey(Attendee, this.diaconate.attendeeId));
       this.attendee$ = this.store.pipe(select(currentAttendee));
       this.attendee$.subscribe(results => { this.attendee = results; });
@@ -99,6 +102,9 @@ export class DeaconDetailComponent implements OnInit {
         deacon: new FormControl(null, Validators.required),
         meetingTime: new FormControl({ value: null, disabled: true }),
         meetingUrl: new FormControl({ value: null, disabled: true }),
+      },
+      {
+        validators: this.meetingValidator('meetingTime','meetingUrl')
       }
     );
   }
@@ -144,4 +150,16 @@ export class DeaconDetailComponent implements OnInit {
     this.listYears.push(currentYear);
     this.listYears.push(currentYear + 1);
   }
+
+
+  public meetingValidator = (date: string, url: string): ValidatorFn => {
+    return (formGroup: FormGroup): ValidationErrors | null => {
+        const meetingTime = formGroup.controls[date].value;
+        const meetingUrl = formGroup.controls[url].value;
+        if ((meetingTime && meetingUrl) ||(!meetingTime && !meetingUrl)) {
+            return null;
+        }
+        return { requireBoth: true };
+    }
+};
 }
