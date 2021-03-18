@@ -8,6 +8,7 @@ import { Store, select } from '@ngrx/store';
 import { currentUserInfo } from './state/user-info.state';
 import { Deacon } from './models/deacon';
 import { DeaconCalendar } from './models/deacon-calendar';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit {
     });
 
     this.items[0].selected = true;
-
+    console.log("is production " + environment.production);
     // ********* for testing
     //
     // this.userInfo = {identityProvider: 'facebook', userDetails: 'Van', userId: 'b6c7c7ed83484c0c9b0c43d0c5302b20', userRoles: ["usher", "deacon", "anonymous", "authenticated"] };
