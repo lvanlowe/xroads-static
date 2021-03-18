@@ -1,57 +1,54 @@
 <div class="example-wrap">
   <form class="k-form" [formGroup]="deaconForm">
-    <fieldset class="k-form-fieldset">
-      <div class="wrap">
-        <kendo-formfield>
-          <kendo-label [for]="month" text="Month"></kendo-label>
-          <kendo-dropdownlist #month formControlName="month" [data]="listMonths">
-          </kendo-dropdownlist>
-          <kendo-formhint>Deacon Calendar Month</kendo-formhint>
-        </kendo-formfield>
-        <kendo-formfield>
-          <kendo-label [for]="year" text="Year"></kendo-label>
-          <kendo-dropdownlist #year formControlName="year" [data]="listYears">
-          </kendo-dropdownlist>
-          <kendo-formhint>Deacon Calendar Year</kendo-formhint>
-        </kendo-formfield>
-        <kendo-formfield>
-          <kendo-label [for]="deacon" text="Deacon"></kendo-label>
-          <kendo-combobox
+      <fieldset class="k-form-fieldset">
+          <div class="wrap">
+              <kendo-formfield>
+                  <kendo-label [for]="month" text="Month"></kendo-label>
+                  <kendo-dropdownlist #month formControlName="month" [data]="listMonths">
+                  </kendo-dropdownlist>
+                  <kendo-formhint>Deacon Calendar Month</kendo-formhint>
+              </kendo-formfield>
+              <kendo-formfield>
+                  <kendo-label [for]="year" text="Year"></kendo-label>
+                  <kendo-dropdownlist #year formControlName="year" [data]="listYears">
+                  </kendo-dropdownlist>
+                  <kendo-formhint>Deacon Calendar Year</kendo-formhint>
+              </kendo-formfield>
+              <kendo-formfield>
+                  <kendo-label [for]="deacon" text="Deacon"></kendo-label>
+                  <kendo-combobox [data]="deaconList$ | async"
+                                  [textField]="'name'"
+                                  [valueField]="'id'"
+                                  [value]="selectedDeacon"
+                                  [placeholder]="'Select A Deacon'"
+                                  #deacon
+                                  (selectionChange)="selectionDeacon($event)"
+                                  formControlName="deacon">
+                  </kendo-combobox>
+                  <kendo-formhint>Deacon on duty for month</kendo-formhint>
+                  <kendo-formerror>Error: Deacon is required</kendo-formerror>
+              </kendo-formfield>
+          </div>
 
-          [data]="deaconList$ | async"
-          [textField]="'name'"
-          [valueField]="'id'"
-          [value]="selectedDeacon"
-          [placeholder]="'Select A Deacon'"
-          #deacon
-          (selectionChange)="selectionDeacon($event)"
-          formControlName="deacon"
-        >
-          </kendo-combobox>
-          <kendo-formhint>Deacon on duty for month</kendo-formhint>
-          <kendo-formerror>Error: Deacon is required</kendo-formerror>
-        </kendo-formfield>
-      </div>
-
-      <kendo-formfield>
-        <kendo-label [for]="meetingDate" text="Meeting Date"></kendo-label>
-        <kendo-datetimepicker
-
-        #meetingDate
-        formControlName="meetingTime"
-        >
-        </kendo-datetimepicker>
-        <kendo-formhint>Date of Deacon meeting for the month</kendo-formhint>
-      </kendo-formfield>
-      <kendo-formfield>
-        <kendo-label [for]="meetingUrl" text="Meeting URL" [optional]="true" ></kendo-label>
-        <input formControlName="meetingUrl" kendoTextBox #meetingUrl/>
-        <kendo-formhint>Deacon Meeting URL</kendo-formhint>
-    </kendo-formfield>
-      <div class="k-form-buttons">
-        <button class="k-button k-primary" [disabled]="!canSave" (click)="clickSave()">Save</button>
-        <button class="k-button" (click)="clearForm()">Reset</button>
-      </div>
-    </fieldset>
+          <kendo-formfield>
+              <kendo-label [for]="meetingDate" text="Meeting Date"></kendo-label>
+              <kendo-datetimepicker [min]="min"
+                                    [max]="max"
+                                    #meetingDate
+                                    formControlName="meetingTime">
+              </kendo-datetimepicker>
+              <kendo-formhint>Date of Deacon meeting for the month</kendo-formhint>
+          </kendo-formfield>
+          <kendo-formfield>
+              <kendo-label [for]="meetingUrl" text="Meeting URL" [optional]="true"></kendo-label>
+              <input formControlName="meetingUrl" kendoTextBox #meetingUrl />
+              <kendo-formhint>Deacon Meeting URL</kendo-formhint>
+              <kendo-formerror *ngIf=deaconForm.errors?.requireBoth>Error: Must have both Meeting Url and Meeting Date</kendo-formerror>
+          </kendo-formfield>
+          <div class="k-form-buttons">
+              <button class="k-button k-primary" [disabled]="!canSave" (click)="clickSave()">Save</button>
+              <button class="k-button" (click)="clearForm()">Reset</button>
+          </div>
+      </fieldset>
   </form>
 </div>

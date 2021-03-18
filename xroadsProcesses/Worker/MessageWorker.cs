@@ -14,6 +14,7 @@ namespace xroadsProcesses.Worker
         private const string DeaconMeetingScheduleTemplate = "d-5a3ebb12dde34e479d4a795e53629d65";
         private const string DeaconMeetingChangeTemplate = "d-e981b607229f40bfac481893bf4b5dee";
         private const string DeaconMeetingCanceledTemplate = "d-a4f446b7ead34914854203acac1a1b73";
+        private const string DeaconMeetingReminderTemplate = "d-000bf3002ec44e7fa644e3b23521074b";
 
         public MessageWorker(SendGridMessage message)
         {
@@ -38,6 +39,15 @@ namespace xroadsProcesses.Worker
             return _message;
         }
 
+        public SendGridMessage PrepareDiaconateReminderEmail(DeaconMeeting deacon)
+        {
+            BuildEmailFrom(deacon.FromEmail, deacon.FromName);
+            BuildEmailTo(deacon.Email, deacon.Name);
+            BuildEmailCopy(deacon.Copy);
+            SetUpDeaconReminderTemplate(deacon);
+            return _message;
+        }
+
         private void SetUpDeaconTemplate(string template, DeaconDuty deacon)
         {
             _message.SetTemplateId(template);
@@ -56,6 +66,12 @@ namespace xroadsProcesses.Worker
                     ? DeaconMeetingScheduleTemplate
                     : DeaconMeetingChangeTemplate);
             }
+            _message.SetTemplateData(deacon);
+        }
+
+        private void SetUpDeaconReminderTemplate(DeaconMeeting deacon)
+        {
+            _message.SetTemplateId(DeaconMeetingReminderTemplate);
             _message.SetTemplateData(deacon);
         }
 

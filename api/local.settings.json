@@ -9,6 +9,11 @@
     "DeaconDutyFromEmail": "crossroadsDeacons@nuttin-but.net",
     "DeaconDutyFromName": "Crossroads Deacons",
     "DeaconDutyCopy": "van@nuttin-but.net;Van Lowe;webmaster@pwsova.org;L. A. Van Lowe ",
+    "DeaconMeetingEmail": "lvanlowe@comcast.net",
+    "DeaconMeetingName": "Van Van Lowe",
+    "DeaconMeetingCopy": "van@nuttin-but.net;Van Lowe;webmaster@pwsova.org;L. A. Van Lowe ,",
+    "DeaconMeetingFromEmail": "crossroadsDeacons@nuttin-but.net",
+    "DeaconMeetingFromName": "Crossroads Deacons",
     "MeetingUrl": "https://xroads-functions.azurewebsites.net/api/SendDiaconateMeetingEmailFunc?code=a6y3x9JqI6CDLDMg06wI5gr7YODSZghR8zJ2/w2XEkYrQ8RLDWe02g=="
   },
   "Host": {
