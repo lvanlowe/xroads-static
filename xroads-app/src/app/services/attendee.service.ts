@@ -20,12 +20,12 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
 
     // ********* for testing
     //
-    `http://localhost:7071/api/GetAttendeeFunc`
+    // `http://localhost:7071/api/GetAttendeeFunc`
     //
     // **********
     // ********* for production
     //
-    // `api/GetAttendeeFunc`
+    `api/GetAttendeeFunc`
     //
     // **********
 
@@ -52,13 +52,13 @@ export class AttendeeService implements IAutoEntityService<Attendee> {
 
   update(entityInfo: IEntityInfo, entity: Attendee): Observable<Attendee> {
     return this.http.post<Attendee>(
-      `http://localhost:7071/api/AddAttendeeFunc`,
-      entity
+      // `http://localhost:7071/api/AddAttendeeFunc`,
+      // entity
       //
       // **********
       // ********* for production
       //
-      // `api/AddAttendeeFunc`, entity
+      `api/AddAttendeeFunc`, entity
       //
       // **********
 

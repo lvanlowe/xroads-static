@@ -20,12 +20,12 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
 
     // ********* for testing
     //
-    `http://localhost:7071/api/GetDiaconateFunc`
+    // `http://localhost:7071/api/GetDiaconateFunc`
     //
     // **********
     // ********* for production
     //
-    // `api/GetDiaconateFunc`
+    `api/GetDiaconateFunc`
     //
     // **********
 
@@ -37,13 +37,13 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
 
     // ********* for testing
     //
-    `http://localhost:7071/api/SaveDiaconateFunc`,
-    entity
+    // `http://localhost:7071/api/SaveDiaconateFunc`,
+    // entity
     //
     // **********
     // ********* for production
     //
-    // `api/SaveDiaconateFunc`, entity
+    `api/SaveDiaconateFunc`, entity
     //
     // **********
 
@@ -55,13 +55,13 @@ export class DiaconateService implements IAutoEntityService<Diaconate> {
 
     // ********* for testing
     //
-    `http://localhost:7071/api/SaveDiaconateFunc`,
-    entity
+    // `http://localhost:7071/api/SaveDiaconateFunc`,
+    // entity
     //
     // **********
     // ********* for production
     //
-    // `api/SaveDiaconateFunc`, entity
+    `api/SaveDiaconateFunc`, entity
     //
     // **********
 
