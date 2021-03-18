@@ -6,7 +6,6 @@ import {LoadAll,LoadAllSuccess, CreateSuccess, SelectByKey, Clear} from '@briebu
 import { AppState } from './state/app.state';
 import { Store, select } from '@ngrx/store';
 import { currentUserInfo } from './state/user-info.state';
-import { Deacon } from './models/deacon';
 import { DeaconCalendar } from './models/deacon-calendar';
 import { environment } from 'src/environments/environment';
 
