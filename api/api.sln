@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api.csproj", "{8A2BEBCD-1E52-44EA-9132-58FDDAFC59DF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xroadsProcesses", "..\xroadsProcesses\xroadsProcesses.csproj", "{A04E0741-382F-4F55-8B46-D81519F8717A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xroadsProcessesTest", "..\xroadsProcessesTest\xroadsProcessesTest.csproj", "{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8A2BEBCD-1E52-44EA-9132-58FDDAFC59DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A2BEBCD-1E52-44EA-9132-58FDDAFC59DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A2BEBCD-1E52-44EA-9132-58FDDAFC59DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A04E0741-382F-4F55-8B46-D81519F8717A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A04E0741-382F-4F55-8B46-D81519F8717A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A04E0741-382F-4F55-8B46-D81519F8717A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A04E0741-382F-4F55-8B46-D81519F8717A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA8EFA0-E9B8-4C57-A815-C5D766C19A37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

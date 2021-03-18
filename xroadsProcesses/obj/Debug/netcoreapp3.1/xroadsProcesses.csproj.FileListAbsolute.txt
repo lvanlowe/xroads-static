@@ -1,0 +1,9 @@
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\bin\Debug\netcoreapp3.1\xroadsProcesses.deps.json
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\bin\Debug\netcoreapp3.1\xroadsProcesses.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\obj\Debug\netcoreapp3.1\xroadsProcesses.csprojAssemblyReference.cache
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\obj\Debug\netcoreapp3.1\xroadsProcesses.AssemblyInfoInputs.cache
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\obj\Debug\netcoreapp3.1\xroadsProcesses.AssemblyInfo.cs
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\bin\Debug\netcoreapp3.1\xroadsProcesses.pdb
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\obj\Debug\netcoreapp3.1\xroadsProcesses.csproj.CoreCompileInputs.cache
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\obj\Debug\netcoreapp3.1\xroadsProcesses.dll
+C:\Users\lvanl\source\repos\Hub\xroads-static\xroadsProcesses\obj\Debug\netcoreapp3.1\xroadsProcesses.pdb

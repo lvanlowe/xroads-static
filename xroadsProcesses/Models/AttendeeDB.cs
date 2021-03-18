@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace api.Models
+namespace xroadsProcesses.Models
 {
     public class AttendeeDB
     {

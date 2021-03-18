@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace api.Models
+namespace xroadsProcesses.Models
 {
     public class DiaconateDB
     {
@@ -11,5 +11,7 @@ namespace api.Models
         public int month { get; set; }
         public string name { get; set; }
         public string attendeeId { get; set; }
-    }
+        public DateTime? meetingDate { get; set; }
+        public DateTime? newMeetingDate { get; set; }
+        public string meetingUrl { get; set; }}
 }
