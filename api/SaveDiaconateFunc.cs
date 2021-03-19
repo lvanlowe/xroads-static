@@ -69,7 +69,7 @@ namespace api
                         diaconate.meetingDate = diaconate.newMeetingDate;
                     }
                 }
-
+                diaconate.startDate = new DateTime(diaconate.year,diaconate.month, 1);
                 diaconate.newMeetingDate = null;
                 await diaconateDocuments.AddAsync(diaconate);
             }
