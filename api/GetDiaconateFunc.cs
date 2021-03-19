@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -24,7 +26,7 @@ namespace api
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            return new OkObjectResult(diaconateDocuments);
+            return new OkObjectResult(diaconateDocuments.Where(d => d.startDate > DateTime.Now.AddMonths(-1)));
         }
     }
 }

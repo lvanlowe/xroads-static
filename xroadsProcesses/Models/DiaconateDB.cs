@@ -13,5 +13,8 @@ namespace xroadsProcesses.Models
         public string attendeeId { get; set; }
         public DateTime? meetingDate { get; set; }
         public DateTime? newMeetingDate { get; set; }
-        public string meetingUrl { get; set; }}
+        public string meetingUrl { get; set; }
+        public DateTime startDate { get; set; }
+
+    }
 }
