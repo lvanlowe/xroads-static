@@ -8,10 +8,9 @@
   <button
       kendoButton
       icon="layout"
-      look="flat"
       (click)="drawer.toggle()"
   >
-      <span class="mail-box">Crossroads PCA Web App</span>
+      <span class="mail-box">Show Menu</span>
   </button>
   <div *ngIf="!canLogin && !canLogout">
     <kendo-buttongroup [selection]="'single'">
